@@ -1,0 +1,57 @@
+name: Analyze Data and Deploy
+
+  on:
+    push:
+      paths:
+        - 'data/**'
+      branches:
+        - main
+    workflow_dispatch:
+
+  jobs:
+    analyze-and-deploy:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v4
+
+        - uses: actions/setup-python@v5
+          with:
+            python-version: '3.11'
+
+        - run: pip install pandas openpyxl numpy
+
+        - name: Check for data files
+          id: check_files
+          run: |
+            if ls data/*.xlsx 2>/dev/null || ls data/*.xlsm 2>/dev/null; then
+              echo "has_data=true" >> $GITHUB_OUTPUT
+            else
+              echo "has_data=false" >> $GITHUB_OUTPUT
+            fi
+
+        - name: Run analysis
+          if: steps.check_files.outputs.has_data == 'true'
+          run: python scripts/generate_analysis.py
+
+        - name: Commit analysis results
+          if: steps.check_files.outputs.has_data == 'true'
+          run: |
+            git config --local user.email "github-actions[bot]@users.noreply.github.com"
+            git config --local user.name "github-actions[bot]"
+            git add public/analysis/
+            git diff --staged --quiet || git commit -m "Auto-generate analysis from data files"
+            git push
+
+        - uses: actions/setup-node@v4
+          with:
+            node-version: '18'
+            cache: 'npm'
+
+        - run: npm ci
+
+        - run: npm run build
+
+        - uses: peaceiris/actions-gh-pages@v3
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_dir: ./build
