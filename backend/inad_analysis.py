@@ -89,9 +89,24 @@ def load_inad_data(file_path: str, start_date: datetime, end_date: datetime) -> 
         if not all([airline_col, laststop_col, year_col, month_col]):
             raise ValueError(f"Missing required columns. Found: {df.columns.tolist()}")
 
+        # Normalize year/month columns before building dates
+        if pd.api.types.is_datetime64_any_dtype(df[year_col]):
+            years = pd.to_datetime(df[year_col], errors='coerce').dt.year
+        else:
+            years = pd.to_numeric(df[year_col], errors='coerce')
+
+        if pd.api.types.is_datetime64_any_dtype(df[month_col]):
+            months = pd.to_datetime(df[month_col], errors='coerce').dt.month
+        else:
+            months = pd.to_numeric(df[month_col], errors='coerce')
+
+        df['Year'] = years.astype('Int64')
+        df['Month'] = months.astype('Int64')
+        df = df.dropna(subset=['Year', 'Month'])
+
         # Create date column from year and month
         df['Date'] = pd.to_datetime(
-            df[year_col].astype(str) + '-' + df[month_col].astype(str).str.zfill(2) + '-01'
+            df['Year'].astype(int).astype(str) + '-' + df['Month'].astype(int).astype(str).str.zfill(2) + '-01'
         )
 
         # Filter by date range
@@ -165,8 +180,22 @@ def load_bazl_data(file_path: str, start_date: datetime, end_date: datetime) -> 
 
         # Create date if year/month available
         if year_col and month_col:
+            if pd.api.types.is_datetime64_any_dtype(df[year_col]):
+                years = pd.to_datetime(df[year_col], errors='coerce').dt.year
+            else:
+                years = pd.to_numeric(df[year_col], errors='coerce')
+
+            if pd.api.types.is_datetime64_any_dtype(df[month_col]):
+                months = pd.to_datetime(df[month_col], errors='coerce').dt.month
+            else:
+                months = pd.to_numeric(df[month_col], errors='coerce')
+
+            df['Year'] = years.astype('Int64')
+            df['Month'] = months.astype('Int64')
+            df = df.dropna(subset=['Year', 'Month'])
+
             df['Date'] = pd.to_datetime(
-                df[year_col].astype(str) + '-' + df[month_col].astype(str).str.zfill(2) + '-01'
+                df['Year'].astype(int).astype(str) + '-' + df['Month'].astype(int).astype(str).str.zfill(2) + '-01'
             )
             df = df[(df['Date'] >= start_date) & (df['Date'] <= end_date)]
 
@@ -292,7 +321,8 @@ def calculate_step3(
             'IsReliable': is_reliable
         })
 
-    return pd.DataFrame(results)
+    columns = ['Airline', 'LastStop', 'INAD_Count', 'PAX', 'Density', 'Confidence', 'IsReliable']
+    return pd.DataFrame(results, columns=columns)
 
 
 def calculate_threshold(step3_df: pd.DataFrame, config: AnalysisConfig) -> float:
@@ -519,41 +549,53 @@ def get_available_semesters(inad_path: str) -> List[Dict]:
         if not year_col or not month_col:
             return []
 
-        # Get unique year-month combinations
-        df['Date'] = pd.to_datetime(
-            df[year_col].astype(str) + '-' + df[month_col].astype(str).str.zfill(2) + '-01'
-        )
+        # Normalize year/month columns
+        if pd.api.types.is_datetime64_any_dtype(df[year_col]):
+            years = pd.to_datetime(df[year_col], errors='coerce').dt.year
+        else:
+            years = pd.to_numeric(df[year_col], errors='coerce')
 
-        min_date = df['Date'].min()
-        max_date = df['Date'].max()
+        if pd.api.types.is_datetime64_any_dtype(df[month_col]):
+            months = pd.to_datetime(df[month_col], errors='coerce').dt.month
+        else:
+            months = pd.to_numeric(df[month_col], errors='coerce')
+
+        df['Year'] = years.astype('Int64')
+        df['Month'] = months.astype('Int64')
+        df = df.dropna(subset=['Year', 'Month'])
+
+        if df.empty:
+            return []
+
+        min_year = int(df['Year'].min())
+        max_year = int(df['Year'].max())
 
         semesters = []
-        current_year = min_date.year
-
-        while current_year <= max_date.year:
+        for year in range(min_year, max_year + 1):
             # H1: Jan-Jun
-            h1_start = datetime(current_year, 1, 1)
-            h1_end = datetime(current_year, 6, 30)
-            if h1_start >= min_date and h1_end <= max_date:
+            if ((df['Year'] == year) & (df['Month'].between(1, 6))).any():
+                h1_start = datetime(year, 1, 1)
+                h1_end = datetime(year, 6, 30)
                 semesters.append({
-                    'value': f'{current_year}-H1',
-                    'label': f'{current_year} H1 (Jan-Jun)',
+                    'value': f'{year}-H1',
+                    'label': f'{year} H1 (Jan-Jun)',
                     'start': h1_start.isoformat(),
                     'end': h1_end.isoformat()
                 })
 
             # H2: Jul-Dec
-            h2_start = datetime(current_year, 7, 1)
-            h2_end = datetime(current_year, 12, 31)
-            if h2_start >= min_date and h2_end <= max_date:
+            if ((df['Year'] == year) & (df['Month'].between(7, 12))).any():
+                h2_start = datetime(year, 7, 1)
+                h2_end = datetime(year, 12, 31)
                 semesters.append({
-                    'value': f'{current_year}-H2',
-                    'label': f'{current_year} H2 (Jul-Dec)',
+                    'value': f'{year}-H2',
+                    'label': f'{year} H2 (Jul-Dec)',
                     'start': h2_start.isoformat(),
                     'end': h2_end.isoformat()
                 })
 
-            current_year += 1
+        # Ensure chronological order
+        semesters.sort(key=lambda s: s['value'])
 
         return semesters
 

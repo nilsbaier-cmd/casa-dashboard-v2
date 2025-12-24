@@ -1,0 +1,203 @@
+{
+  "semesters": [
+    {
+      "semester": "2019-H2",
+      "summary": {
+        "total_inad": 257,
+        "high_priority": 0,
+        "watch_list": 0,
+        "unreliable": 12,
+        "clear": 0,
+        "threshold": 0.1,
+        "method": "median"
+      },
+      "threshold": 0.1,
+      "highPriorityCount": 0,
+      "watchListCount": 0,
+      "totalInad": 257
+    },
+    {
+      "semester": "2020-H1",
+      "summary": {
+        "total_inad": 91,
+        "high_priority": 0,
+        "watch_list": 0,
+        "unreliable": 1,
+        "clear": 0,
+        "threshold": 0.1,
+        "method": "median"
+      },
+      "threshold": 0.1,
+      "highPriorityCount": 0,
+      "watchListCount": 0,
+      "totalInad": 91
+    },
+    {
+      "semester": "2020-H2",
+      "summary": {
+        "total_inad": 41,
+        "high_priority": 0,
+        "watch_list": 0,
+        "unreliable": 1,
+        "clear": 0,
+        "threshold": 0.1,
+        "method": "median"
+      },
+      "threshold": 0.1,
+      "highPriorityCount": 0,
+      "watchListCount": 0,
+      "totalInad": 41
+    },
+    {
+      "semester": "2021-H1",
+      "summary": {
+        "total_inad": 32,
+        "high_priority": 0,
+        "watch_list": 0,
+        "unreliable": 0,
+        "clear": 0,
+        "threshold": 0.1,
+        "method": "median"
+      },
+      "threshold": 0.1,
+      "highPriorityCount": 0,
+      "watchListCount": 0,
+      "totalInad": 32
+    },
+    {
+      "semester": "2021-H2",
+      "summary": {
+        "total_inad": 179,
+        "high_priority": 0,
+        "watch_list": 0,
+        "unreliable": 7,
+        "clear": 0,
+        "threshold": 0.1,
+        "method": "median"
+      },
+      "threshold": 0.1,
+      "highPriorityCount": 0,
+      "watchListCount": 0,
+      "totalInad": 179
+    },
+    {
+      "semester": "2022-H1",
+      "summary": {
+        "total_inad": 252,
+        "high_priority": 0,
+        "watch_list": 0,
+        "unreliable": 12,
+        "clear": 0,
+        "threshold": 0.1,
+        "method": "median"
+      },
+      "threshold": 0.1,
+      "highPriorityCount": 0,
+      "watchListCount": 0,
+      "totalInad": 252
+    },
+    {
+      "semester": "2022-H2",
+      "summary": {
+        "total_inad": 374,
+        "high_priority": 0,
+        "watch_list": 0,
+        "unreliable": 17,
+        "clear": 0,
+        "threshold": 0.1,
+        "method": "median"
+      },
+      "threshold": 0.1,
+      "highPriorityCount": 0,
+      "watchListCount": 0,
+      "totalInad": 374
+    },
+    {
+      "semester": "2023-H1",
+      "summary": {
+        "total_inad": 343,
+        "high_priority": 0,
+        "watch_list": 0,
+        "unreliable": 17,
+        "clear": 0,
+        "threshold": 0.1,
+        "method": "median"
+      },
+      "threshold": 0.1,
+      "highPriorityCount": 0,
+      "watchListCount": 0,
+      "totalInad": 343
+    },
+    {
+      "semester": "2023-H2",
+      "summary": {
+        "total_inad": 351,
+        "high_priority": 0,
+        "watch_list": 0,
+        "unreliable": 19,
+        "clear": 0,
+        "threshold": 0.1,
+        "method": "median"
+      },
+      "threshold": 0.1,
+      "highPriorityCount": 0,
+      "watchListCount": 0,
+      "totalInad": 351
+    },
+    {
+      "semester": "2024-H1",
+      "summary": {
+        "total_inad": 310,
+        "high_priority": 0,
+        "watch_list": 0,
+        "unreliable": 15,
+        "clear": 0,
+        "threshold": 0.1,
+        "method": "median"
+      },
+      "threshold": 0.1,
+      "highPriorityCount": 0,
+      "watchListCount": 0,
+      "totalInad": 310
+    },
+    {
+      "semester": "2024-H2",
+      "summary": {
+        "total_inad": 327,
+        "high_priority": 0,
+        "watch_list": 0,
+        "unreliable": 14,
+        "clear": 0,
+        "threshold": 0.1,
+        "method": "median"
+      },
+      "threshold": 0.1,
+      "highPriorityCount": 0,
+      "watchListCount": 0,
+      "totalInad": 327
+    },
+    {
+      "semester": "2025-H1",
+      "summary": {
+        "total_inad": 31,
+        "high_priority": 0,
+        "watch_list": 0,
+        "unreliable": 0,
+        "clear": 0,
+        "threshold": 0.1,
+        "method": "median"
+      },
+      "threshold": 0.1,
+      "highPriorityCount": 0,
+      "watchListCount": 0,
+      "totalInad": 31
+    }
+  ],
+  "trend": {
+    "direction": "stable",
+    "highPriorityChange": 0,
+    "watchListChange": 0,
+    "totalChange": 0
+  },
+  "generated_at": "2025-12-24T22:48:08.128503"
+}

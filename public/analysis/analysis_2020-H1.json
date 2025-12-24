@@ -1,0 +1,65 @@
+{
+  "semester": "2020-H1",
+  "summary": {
+    "total_inad": 91,
+    "high_priority": 0,
+    "watch_list": 0,
+    "unreliable": 1,
+    "clear": 0,
+    "threshold": 0.1,
+    "method": "median"
+  },
+  "threshold": 0.1,
+  "routes": [
+    {
+      "airline": "TK",
+      "lastStop": "IST",
+      "inad": 6,
+      "pax": 0,
+      "density": null,
+      "confidence": 0,
+      "priority": "UNRELIABLE",
+      "originLat": 41.2753,
+      "originLng": 28.7519,
+      "originCity": "Istanbul",
+      "originCountry": "TR"
+    }
+  ],
+  "airlines": [
+    {
+      "airline": "LX",
+      "inadCount": 26
+    },
+    {
+      "airline": "WK",
+      "inadCount": 8
+    },
+    {
+      "airline": "DS",
+      "inadCount": 6
+    },
+    {
+      "airline": "GM",
+      "inadCount": 6
+    },
+    {
+      "airline": "TK",
+      "inadCount": 6
+    }
+  ],
+  "step2Routes": [
+    {
+      "airline": "TK",
+      "lastStop": "IST",
+      "inadCount": 6
+    }
+  ],
+  "config": {
+    "min_inad": 6,
+    "min_pax": 5000,
+    "min_density": 0.1,
+    "threshold_method": "median",
+    "high_priority_multiplier": 1.5
+  },
+  "generated_at": "2025-12-24T22:46:05.513866"
+}

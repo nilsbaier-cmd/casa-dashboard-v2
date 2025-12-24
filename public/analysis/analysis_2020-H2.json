@@ -1,0 +1,49 @@
+{
+  "semester": "2020-H2",
+  "summary": {
+    "total_inad": 41,
+    "high_priority": 0,
+    "watch_list": 0,
+    "unreliable": 1,
+    "clear": 0,
+    "threshold": 0.1,
+    "method": "median"
+  },
+  "threshold": 0.1,
+  "routes": [
+    {
+      "airline": "LX",
+      "lastStop": "LHR",
+      "inad": 6,
+      "pax": 0,
+      "density": null,
+      "confidence": 0,
+      "priority": "UNRELIABLE",
+      "originLat": 51.47,
+      "originLng": -0.4543,
+      "originCity": "London",
+      "originCountry": "GB"
+    }
+  ],
+  "airlines": [
+    {
+      "airline": "LX",
+      "inadCount": 25
+    }
+  ],
+  "step2Routes": [
+    {
+      "airline": "LX",
+      "lastStop": "LHR",
+      "inadCount": 6
+    }
+  ],
+  "config": {
+    "min_inad": 6,
+    "min_pax": 5000,
+    "min_density": 0.1,
+    "threshold_method": "median",
+    "high_priority_multiplier": 1.5
+  },
+  "generated_at": "2025-12-24T22:46:17.686619"
+}
