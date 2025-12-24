@@ -1,13 +1,14 @@
 import React from 'react';
-import { 
-  Globe, 
-  LayoutDashboard, 
-  Plane, 
-  AlertTriangle, 
-  RefreshCw, 
+import {
+  Globe,
+  LayoutDashboard,
+  Plane,
+  AlertTriangle,
+  RefreshCw,
   FileText,
   Settings,
-  HelpCircle
+  HelpCircle,
+  TrendingUp
 } from 'lucide-react';
 
 // Translations for sidebar
@@ -18,6 +19,7 @@ const translations = {
     overview: 'Overview',
     airlines: 'Airlines',
     priority: 'Priority Analysis',
+    historic: 'Historic Trends',
     systemic: 'Systemic Cases',
     legal: 'Legal Summary',
     settings: 'Settings',
@@ -32,6 +34,7 @@ const translations = {
     overview: 'Übersicht',
     airlines: 'Fluggesellschaften',
     priority: 'Prioritätsanalyse',
+    historic: 'Historische Trends',
     systemic: 'Systemische Fälle',
     legal: 'Rechtliche Zusammenfassung',
     settings: 'Einstellungen',
@@ -46,6 +49,7 @@ const translations = {
     overview: 'Aperçu',
     airlines: 'Compagnies Aériennes',
     priority: 'Analyse des Priorités',
+    historic: 'Tendances Historiques',
     systemic: 'Cas Systémiques',
     legal: 'Résumé Juridique',
     settings: 'Paramètres',
@@ -56,7 +60,8 @@ const translations = {
   },
 };
 
-const semesters = [
+// Default semesters (used when no data is loaded)
+const defaultSemesters = [
   { value: '2024-H2', label: '2024 H2 (Jul-Dec)' },
   { value: '2024-H1', label: '2024 H1 (Jan-Jun)' },
   { value: '2023-H2', label: '2023 H2 (Jul-Dec)' },
@@ -64,16 +69,19 @@ const semesters = [
   { value: '2022-H2', label: '2022 H2 (Jul-Dec)' },
 ];
 
-const Sidebar = ({ 
-  activeTab, 
-  setActiveTab, 
-  language, 
+const Sidebar = ({
+  activeTab,
+  setActiveTab,
+  language,
   setLanguage,
   semester,
   setSemester,
-  priorityCount = 5,
-  systemicCount = 3
+  semesters = [],
+  priorityCount = 0,
+  systemicCount = 0
 }) => {
+  // Use provided semesters or fallback to defaults
+  const semesterOptions = semesters.length > 0 ? semesters : defaultSemesters;
   const t = translations[language] || translations.en;
 
   const navItems = [
@@ -81,6 +89,7 @@ const Sidebar = ({
     { id: 'overview', icon: LayoutDashboard, label: t.overview },
     { id: 'airlines', icon: Plane, label: t.airlines },
     { id: 'priority', icon: AlertTriangle, label: t.priority, badge: { count: priorityCount, type: 'danger' } },
+    { id: 'historic', icon: TrendingUp, label: t.historic },
     { id: 'systemic', icon: RefreshCw, label: t.systemic, badge: { count: systemicCount, type: 'warning' } },
     { id: 'legal', icon: FileText, label: t.legal },
   ];
@@ -101,12 +110,12 @@ const Sidebar = ({
       {/* Semester Selector */}
       <div className="semester-selector">
         <div className="semester-label">{t.semester}</div>
-        <select 
+        <select
           className="semester-select"
           value={semester}
           onChange={(e) => setSemester(e.target.value)}
         >
-          {semesters.map(sem => (
+          {semesterOptions.map(sem => (
             <option key={sem.value} value={sem.value}>
               {sem.label}
             </option>
@@ -140,13 +149,19 @@ const Sidebar = ({
         {/* Settings Section */}
         <div className="nav-section">
           <div className="nav-section-title">{t.settings}</div>
-          <div className="nav-item">
+          <div
+            className={`nav-item ${activeTab === 'config' ? 'active' : ''}`}
+            onClick={() => setActiveTab('config')}
+          >
             <div className="nav-item-icon">
               <Settings size={18} />
             </div>
             <span>{t.configuration}</span>
           </div>
-          <div className="nav-item">
+          <div
+            className={`nav-item ${activeTab === 'help' ? 'active' : ''}`}
+            onClick={() => setActiveTab('help')}
+          >
             <div className="nav-item-icon">
               <HelpCircle size={18} />
             </div>

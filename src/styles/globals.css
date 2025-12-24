@@ -1,48 +1,49 @@
 /* ============================================
-   CASA Dashboard - Light Theme (Prodify-inspired)
+   CASA Dashboard - Neutral Gray/Teal Theme
+   Clean, Professional, Material Design Inspired
    ============================================ */
 
-/* CSS Variables */
+/* CSS Variables - Neutral Gray/Teal Theme */
 :root {
-  /* Primary Colors */
-  --color-primary: #7C3AED;
-  --color-primary-light: #A78BFA;
-  --color-primary-lighter: #EDE9FE;
-  --color-primary-dark: #5B21B6;
-  
+  /* Primary Colors - Teal */
+  --color-primary: #0D9488;
+  --color-primary-light: #14B8A6;
+  --color-primary-lighter: #CCFBF1;
+  --color-primary-dark: #0F766E;
+
   /* Accent Colors */
-  --color-accent: #14B8A6;
+  --color-accent: #0D9488;
   --color-accent-light: #5EEAD4;
   --color-coral: #F97066;
   --color-orange: #FB923C;
-  
+
   /* Priority Colors */
-  --color-danger: #EF4444;
+  --color-danger: #DC2626;
   --color-danger-light: #FEE2E2;
-  --color-warning: #F59E0B;
+  --color-warning: #D97706;
   --color-warning-light: #FEF3C7;
-  --color-success: #10B981;
-  --color-success-light: #D1FAE5;
-  --color-muted: #6B7280;
-  --color-muted-light: #F3F4F6;
-  
-  /* Background Colors */
-  --bg-primary: #F5F3FF;
+  --color-success: #16A34A;
+  --color-success-light: #DCFCE7;
+  --color-muted: #64748B;
+  --color-muted-light: #F1F5F9;
+
+  /* Background Colors - Clean Slate Gray */
+  --bg-primary: #F8FAFC;
   --bg-secondary: #FFFFFF;
-  --bg-tertiary: #F9FAFB;
+  --bg-tertiary: #F1F5F9;
   --bg-card: #FFFFFF;
   --bg-sidebar: #FFFFFF;
-  --bg-hover: #F3F4F6;
-  
+  --bg-hover: #F1F5F9;
+
   /* Text Colors */
-  --text-primary: #111827;
-  --text-secondary: #4B5563;
-  --text-muted: #9CA3AF;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
   --text-on-primary: #FFFFFF;
   
-  /* Borders */
-  --border-color: #E5E7EB;
-  --border-light: #F3F4F6;
+  /* Borders - Slate */
+  --border-color: #E2E8F0;
+  --border-light: #F1F5F9;
   
   /* Shadows */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -97,14 +98,11 @@ body {
   min-height: 100vh;
 }
 
-/* Background Pattern */
+/* Background - Clean solid color */
 .app-background {
   position: fixed;
   inset: 0;
-  background: 
-    radial-gradient(ellipse at 0% 0%, rgba(124, 58, 237, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 100% 100%, rgba(20, 184, 166, 0.06) 0%, transparent 50%),
-    var(--bg-primary);
+  background: var(--bg-primary);
   z-index: -1;
 }
 
@@ -156,14 +154,14 @@ body {
 .sidebar-logo-icon {
   width: 44px;
   height: 44px;
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  background: var(--color-primary);
   border-radius: var(--radius-lg);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
   color: white;
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-sm);
 }
 
 .sidebar-logo-text {
@@ -622,10 +620,10 @@ body {
   border-radius: 50%;
 }
 
-.legend-dot.high { background: var(--color-danger); }
-.legend-dot.watch { background: var(--color-warning); }
-.legend-dot.clear { background: var(--color-success); }
-.legend-dot.dest { background: var(--color-primary); }
+.legend-dot.high { background: #DC2626; }
+.legend-dot.watch { background: #D97706; }
+.legend-dot.clear { background: #16A34A; }
+.legend-dot.dest { background: #0D9488; }
 
 /* ============================================
    TABLES

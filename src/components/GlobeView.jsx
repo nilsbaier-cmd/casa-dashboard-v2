@@ -52,7 +52,7 @@ const GlobeView = ({ routes = [], translations = {}, onRouteSelect }) => {
       startLng: route.originLng,
       endLat: SWITZERLAND.lat,
       endLng: SWITZERLAND.lng,
-      color: [PRIORITY_COLORS[route.priority], '#7C3AED'],
+      color: [PRIORITY_COLORS[route.priority], '#0D9488'],
       stroke: Math.min(Math.max(route.inad / 3, 1), 5),
       ...route,
     }));
@@ -82,7 +82,7 @@ const GlobeView = ({ routes = [], translations = {}, onRouteSelect }) => {
       name: 'Switzerland',
       city: 'Destination',
       size: 1.5,
-      color: '#7C3AED',
+      color: '#0D9488',
       isDestination: true,
     });
     
@@ -183,7 +183,7 @@ const GlobeView = ({ routes = [], translations = {}, onRouteSelect }) => {
       pointRadius="size"
       pointColor="color"
       
-      atmosphereColor="#7C3AED"
+      atmosphereColor="#0D9488"
       atmosphereAltitude={0.15}
       
       animateIn={true}
