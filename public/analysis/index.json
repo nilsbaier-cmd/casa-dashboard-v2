@@ -1,0 +1,25 @@
+{
+  "semesters": [
+    "2019-H2",
+    "2020-H1",
+    "2020-H2",
+    "2021-H1",
+    "2021-H2",
+    "2022-H1",
+    "2022-H2",
+    "2023-H1",
+    "2023-H2",
+    "2024-H1",
+    "2024-H2",
+    "2025-H1"
+  ],
+  "latest_semester": "2025-H1",
+  "generated_at": "2025-12-24T22:48:08.132567",
+  "config": {
+    "min_inad": 6,
+    "min_pax": 5000,
+    "min_density": 0.1,
+    "threshold_method": "median",
+    "high_priority_multiplier": 1.5
+  }
+}

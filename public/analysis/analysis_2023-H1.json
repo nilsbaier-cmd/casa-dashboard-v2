@@ -1,0 +1,389 @@
+{
+  "semester": "2023-H1",
+  "summary": {
+    "total_inad": 343,
+    "high_priority": 0,
+    "watch_list": 0,
+    "unreliable": 17,
+    "clear": 0,
+    "threshold": 0.1,
+    "method": "median"
+  },
+  "threshold": 0.1,
+  "routes": [
+    {
+      "airline": "BA",
+      "lastStop": "LHR",
+      "inad": 20,
+      "pax": 0,
+      "density": null,
+      "confidence": 0,
+      "priority": "UNRELIABLE",
+      "originLat": 51.47,
+      "originLng": -0.4543,
+      "originCity": "London",
+      "originCountry": "GB"
+    },
+    {
+      "airline": "LX",
+      "lastStop": "DUB",
+      "inad": 14,
+      "pax": 0,
+      "density": null,
+      "confidence": 0,
+      "priority": "UNRELIABLE",
+      "originLat": 53.4264,
+      "originLng": -6.2499,
+      "originCity": "Dublin",
+      "originCountry": "IE"
+    },
+    {
+      "airline": "LX",
+      "lastStop": "LHR",
+      "inad": 13,
+      "pax": 0,
+      "density": null,
+      "confidence": 0,
+      "priority": "UNRELIABLE",
+      "originLat": 51.47,
+      "originLng": -0.4543,
+      "originCity": "London",
+      "originCountry": "GB"
+    },
+    {
+      "airline": "LX",
+      "lastStop": "YUL",
+      "inad": 12,
+      "pax": 0,
+      "density": null,
+      "confidence": 0,
+      "priority": "UNRELIABLE",
+      "originLat": null,
+      "originLng": null,
+      "originCity": null,
+      "originCountry": null
+    },
+    {
+      "airline": "TK",
+      "lastStop": "IST",
+      "inad": 12,
+      "pax": 0,
+      "density": null,
+      "confidence": 0,
+      "priority": "UNRELIABLE",
+      "originLat": 41.2753,
+      "originLng": 28.7519,
+      "originCity": "Istanbul",
+      "originCountry": "TR"
+    },
+    {
+      "airline": "LX",
+      "lastStop": "JNB",
+      "inad": 10,
+      "pax": 0,
+      "density": null,
+      "confidence": 0,
+      "priority": "UNRELIABLE",
+      "originLat": -26.1392,
+      "originLng": 28.246,
+      "originCity": "Johannesburg",
+      "originCountry": "ZA"
+    },
+    {
+      "airline": "UA",
+      "lastStop": "IAD",
+      "inad": 10,
+      "pax": 0,
+      "density": null,
+      "confidence": 0,
+      "priority": "UNRELIABLE",
+      "originLat": null,
+      "originLng": null,
+      "originCity": null,
+      "originCountry": null
+    },
+    {
+      "airline": "LX",
+      "lastStop": "BOS",
+      "inad": 8,
+      "pax": 0,
+      "density": null,
+      "confidence": 0,
+      "priority": "UNRELIABLE",
+      "originLat": null,
+      "originLng": null,
+      "originCity": null,
+      "originCountry": null
+    },
+    {
+      "airline": "EI",
+      "lastStop": "DUB",
+      "inad": 8,
+      "pax": 0,
+      "density": null,
+      "confidence": 0,
+      "priority": "UNRELIABLE",
+      "originLat": 53.4264,
+      "originLng": -6.2499,
+      "originCity": "Dublin",
+      "originCountry": "IE"
+    },
+    {
+      "airline": "EK",
+      "lastStop": "DXB",
+      "inad": 8,
+      "pax": 0,
+      "density": null,
+      "confidence": 0,
+      "priority": "UNRELIABLE",
+      "originLat": 25.2532,
+      "originLng": 55.3657,
+      "originCity": "Dubai",
+      "originCountry": "AE"
+    },
+    {
+      "airline": "UA",
+      "lastStop": "ORD",
+      "inad": 8,
+      "pax": 0,
+      "density": null,
+      "confidence": 0,
+      "priority": "UNRELIABLE",
+      "originLat": 41.9742,
+      "originLng": -87.9073,
+      "originCity": "Chicago",
+      "originCountry": "US"
+    },
+    {
+      "airline": "LX",
+      "lastStop": "DXB",
+      "inad": 7,
+      "pax": 0,
+      "density": null,
+      "confidence": 0,
+      "priority": "UNRELIABLE",
+      "originLat": 25.2532,
+      "originLng": 55.3657,
+      "originCity": "Dubai",
+      "originCountry": "AE"
+    },
+    {
+      "airline": "JU",
+      "lastStop": "BEG",
+      "inad": 7,
+      "pax": 0,
+      "density": null,
+      "confidence": 0,
+      "priority": "UNRELIABLE",
+      "originLat": 44.8184,
+      "originLng": 20.3091,
+      "originCity": "Belgrade",
+      "originCountry": "RS"
+    },
+    {
+      "airline": "LX",
+      "lastStop": "DEL",
+      "inad": 6,
+      "pax": 0,
+      "density": null,
+      "confidence": 0,
+      "priority": "UNRELIABLE",
+      "originLat": 28.5562,
+      "originLng": 77.1,
+      "originCity": "Delhi",
+      "originCountry": "IN"
+    },
+    {
+      "airline": "EZY",
+      "lastStop": "LGW",
+      "inad": 6,
+      "pax": 0,
+      "density": null,
+      "confidence": 0,
+      "priority": "UNRELIABLE",
+      "originLat": null,
+      "originLng": null,
+      "originCity": null,
+      "originCountry": null
+    },
+    {
+      "airline": "DS",
+      "lastStop": "TIA",
+      "inad": 6,
+      "pax": 0,
+      "density": null,
+      "confidence": 0,
+      "priority": "UNRELIABLE",
+      "originLat": 41.4147,
+      "originLng": 19.7206,
+      "originCity": "Tirana",
+      "originCountry": "AL"
+    },
+    {
+      "airline": "UA",
+      "lastStop": "EWR",
+      "inad": 6,
+      "pax": 0,
+      "density": null,
+      "confidence": 0,
+      "priority": "UNRELIABLE",
+      "originLat": null,
+      "originLng": null,
+      "originCity": null,
+      "originCountry": null
+    }
+  ],
+  "airlines": [
+    {
+      "airline": "LX",
+      "inadCount": 120
+    },
+    {
+      "airline": "UA",
+      "inadCount": 25
+    },
+    {
+      "airline": "BA",
+      "inadCount": 24
+    },
+    {
+      "airline": "WK",
+      "inadCount": 21
+    },
+    {
+      "airline": "DS",
+      "inadCount": 19
+    },
+    {
+      "airline": "TK",
+      "inadCount": 17
+    },
+    {
+      "airline": "W6",
+      "inadCount": 13
+    },
+    {
+      "airline": "U2",
+      "inadCount": 10
+    },
+    {
+      "airline": "AC",
+      "inadCount": 9
+    },
+    {
+      "airline": "EI",
+      "inadCount": 8
+    },
+    {
+      "airline": "EK",
+      "inadCount": 8
+    },
+    {
+      "airline": "EZY",
+      "inadCount": 7
+    },
+    {
+      "airline": "JU",
+      "inadCount": 7
+    },
+    {
+      "airline": "EY",
+      "inadCount": 6
+    }
+  ],
+  "step2Routes": [
+    {
+      "airline": "BA",
+      "lastStop": "LHR",
+      "inadCount": 20
+    },
+    {
+      "airline": "LX",
+      "lastStop": "DUB",
+      "inadCount": 14
+    },
+    {
+      "airline": "LX",
+      "lastStop": "LHR",
+      "inadCount": 13
+    },
+    {
+      "airline": "LX",
+      "lastStop": "YUL",
+      "inadCount": 12
+    },
+    {
+      "airline": "TK",
+      "lastStop": "IST",
+      "inadCount": 12
+    },
+    {
+      "airline": "LX",
+      "lastStop": "JNB",
+      "inadCount": 10
+    },
+    {
+      "airline": "UA",
+      "lastStop": "IAD",
+      "inadCount": 10
+    },
+    {
+      "airline": "LX",
+      "lastStop": "BOS",
+      "inadCount": 8
+    },
+    {
+      "airline": "EI",
+      "lastStop": "DUB",
+      "inadCount": 8
+    },
+    {
+      "airline": "EK",
+      "lastStop": "DXB",
+      "inadCount": 8
+    },
+    {
+      "airline": "UA",
+      "lastStop": "ORD",
+      "inadCount": 8
+    },
+    {
+      "airline": "LX",
+      "lastStop": "DXB",
+      "inadCount": 7
+    },
+    {
+      "airline": "JU",
+      "lastStop": "BEG",
+      "inadCount": 7
+    },
+    {
+      "airline": "LX",
+      "lastStop": "DEL",
+      "inadCount": 6
+    },
+    {
+      "airline": "EZY",
+      "lastStop": "LGW",
+      "inadCount": 6
+    },
+    {
+      "airline": "DS",
+      "lastStop": "TIA",
+      "inadCount": 6
+    },
+    {
+      "airline": "UA",
+      "lastStop": "EWR",
+      "inadCount": 6
+    }
+  ],
+  "config": {
+    "min_inad": 6,
+    "min_pax": 5000,
+    "min_density": 0.1,
+    "threshold_method": "median",
+    "high_priority_multiplier": 1.5
+  },
+  "generated_at": "2025-12-24T22:47:18.906536"
+}

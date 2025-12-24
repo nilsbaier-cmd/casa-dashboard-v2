@@ -36,7 +36,12 @@ def find_data_files(data_dir):
     return inad_file, bazl_file
 
 def analyze_semester(inad_path, bazl_path, semester, config):
-    """Run analysis for a single semester."""
+    """Run analysis for a single semester.
+
+    Returns both the JSON-friendly payload and the raw step3 DataFrame
+    so we can reuse calculations for systemic case detection without
+    re-running the full pipeline.
+    """
     year, half = semester.split('-')
     year = int(year)
 
@@ -102,7 +107,7 @@ def analyze_semester(inad_path, bazl_path, semester, config):
             'high_priority_multiplier': config.high_priority_multiplier
         },
         'generated_at': datetime.now().isoformat()
-    }
+    }, step3_df
 
 def generate_historic_data(semester_results):
     """Generate historic trend data from semester results."""
@@ -150,28 +155,11 @@ def generate_historic_data(semester_results):
         'generated_at': datetime.now().isoformat()
     }
 
-def generate_systemic_cases(inad_path, bazl_path, semesters_info, config):
-    """Generate systemic cases data."""
+def generate_systemic_cases(semester_step3_results, config):
+    """Generate systemic cases data from pre-computed step3 results."""
     import pandas as pd
 
-    semester_results = []
-    for sem_info in semesters_info:
-        semester = sem_info['value']
-        year, half = semester.split('-')
-        year = int(year)
-
-        if half == 'H1':
-            start_date = datetime(year, 1, 1)
-            end_date = datetime(year, 6, 30)
-        else:
-            start_date = datetime(year, 7, 1)
-            end_date = datetime(year, 12, 31)
-
-        results = run_full_analysis(inad_path, bazl_path, start_date, end_date, config)
-        semester_results.append((semester, results['step3']))
-
-    # Detect systemic cases
-    systemic_df = detect_systemic_cases(semester_results, config)
+    systemic_df = detect_systemic_cases(semester_step3_results, config)
 
     cases = []
     for _, row in systemic_df.iterrows():
@@ -215,7 +203,12 @@ def main():
 
     # Get available semesters
     semesters = get_available_semesters(inad_file)
-    print(f"Found {len(semesters)} semesters: {[s['value'] for s in semesters]}")
+    max_semesters = int(os.getenv('MAX_SEMESTERS', '12'))
+    if max_semesters and len(semesters) > max_semesters:
+        semesters = semesters[-max_semesters:]
+        print(f"Found {len(semesters)} semesters (trimmed to last {max_semesters}): {[s['value'] for s in semesters]}")
+    else:
+        print(f"Found {len(semesters)} semesters: {[s['value'] for s in semesters]}")
 
     # Save semesters list
     with open(output_dir / 'semesters.json', 'w') as f:
@@ -224,13 +217,15 @@ def main():
 
     # Analyze each semester
     semester_results = {}
+    semester_step3 = []
     for sem_info in semesters:
         semester = sem_info['value']
         print(f"Analyzing {semester}...")
 
         try:
-            result = analyze_semester(inad_file, bazl_file, semester, config)
+            result, step3_df = analyze_semester(inad_file, bazl_file, semester, config)
             semester_results[semester] = result
+            semester_step3.append((semester, step3_df))
 
             # Save individual semester analysis
             with open(output_dir / f'analysis_{semester}.json', 'w') as f:
@@ -250,7 +245,7 @@ def main():
     if len(semesters) >= 2:
         print("Detecting systemic cases...")
         try:
-            systemic = generate_systemic_cases(inad_file, bazl_file, semesters, config)
+            systemic = generate_systemic_cases(semester_step3, config)
             with open(output_dir / 'systemic.json', 'w') as f:
                 json.dump(systemic, f, indent=2)
             print("Generated: systemic.json")

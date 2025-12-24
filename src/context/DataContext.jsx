@@ -3,7 +3,7 @@
  * Global state management for analysis data
  */
 
-import React, { createContext, useContext, useState, useCallback } from 'react';
+import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
 import api from '../services/api';
 
 // Create context
@@ -35,6 +35,57 @@ export const DataProvider = ({ children }) => {
     high_priority_multiplier: 1.5,
     threshold_method: 'median',
   });
+
+  // Attempt to load pre-generated static analysis (for GitHub Pages deployments)
+  useEffect(() => {
+    const loadStaticAnalysis = async () => {
+      // Avoid reloading if data is already present
+      if (dataReady || semesters.length > 0) return;
+
+      setIsLoading(true);
+      setError(null);
+
+      try {
+        const basePath = `${process.env.PUBLIC_URL || ''}/analysis`;
+
+        const semestersRes = await fetch(`${basePath}/semesters.json`);
+        if (!semestersRes.ok) return;
+
+        const semestersData = await semestersRes.json();
+        if (!Array.isArray(semestersData) || semestersData.length === 0) return;
+
+        setSemesters(semestersData);
+        setDataReady(true);
+
+        const latest = semestersData[semestersData.length - 1].value;
+        setCurrentSemester(latest);
+
+        // Load primary analysis for latest semester
+        const analysisRes = await fetch(`${basePath}/analysis_${latest}.json`);
+        if (analysisRes.ok) {
+          const analysisJson = await analysisRes.json();
+          setAnalysisData(analysisJson);
+        }
+
+        // Load supporting datasets if available
+        const historicRes = await fetch(`${basePath}/historic.json`);
+        if (historicRes.ok) {
+          setHistoricData(await historicRes.json());
+        }
+
+        const systemicRes = await fetch(`${basePath}/systemic.json`);
+        if (systemicRes.ok) {
+          setSystemicCases(await systemicRes.json());
+        }
+      } catch (err) {
+        console.error('Failed to load static analysis data', err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadStaticAnalysis();
+  }, [dataReady, semesters.length]);
 
   // Upload files handler
   const uploadFiles = useCallback(async (inadFile, bazlFile) => {
