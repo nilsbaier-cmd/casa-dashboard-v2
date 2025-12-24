@@ -1,6 +1,6 @@
 name: Analyze Data and Deploy
 
-on:
+  on:
     push:
       paths:
         - 'data/**'
