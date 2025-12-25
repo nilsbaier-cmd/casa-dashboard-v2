@@ -19,8 +19,8 @@
       "density": null,
       "confidence": 0,
       "priority": "UNRELIABLE",
-      "originLat": 51.47,
-      "originLng": -0.4543,
+      "originLat": 51.4706,
+      "originLng": -0.46194,
       "originCity": "London",
       "originCountry": "GB"
     }
@@ -45,5 +45,5 @@
     "threshold_method": "median",
     "high_priority_multiplier": 1.5
   },
-  "generated_at": "2025-12-24T22:46:17.686619"
+  "generated_at": "2025-12-25T02:25:53.872644"
 }

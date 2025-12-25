@@ -155,17 +155,31 @@ def load_bazl_data(file_path: str, start_date: datetime, end_date: datetime) -> 
         year_col = None
         month_col = None
 
+        # First pass: Try to identify columns with priority for specific patterns
         for col in df.columns:
             col_lower = col.lower()
-            if 'airline' in col_lower or 'carrier' in col_lower or 'flug' in col_lower:
+
+            # PAX column - check for various spellings including French "passagers"
+            if pax_col is None:
+                if 'pax' in col_lower or 'passenger' in col_lower or 'passagier' in col_lower or 'passager' in col_lower:
+                    pax_col = col
+
+            # Airline column - prefer IATA code column
+            if 'iata' in col_lower and 'airline' in col_lower:
                 airline_col = col
-            elif 'airport' in col_lower or 'flug' in col_lower or 'last' in col_lower:
+            elif airline_col is None and ('airline' in col_lower or 'carrier' in col_lower or 'fluggesellschaft' in col_lower):
+                airline_col = col
+
+            # Airport column - prefer IATA code column
+            if 'iata' in col_lower and 'flughafen' in col_lower:
                 airport_col = col
-            elif 'pax' in col_lower or 'passenger' in col_lower or 'passagier' in col_lower:
-                pax_col = col
-            elif 'year' in col_lower or 'jahr' in col_lower:
+            elif airport_col is None and ('airport' in col_lower or 'flughafen' in col_lower or 'abflugort' in col_lower):
+                airport_col = col
+
+            # Year and Month
+            if year_col is None and ('year' in col_lower or 'jahr' in col_lower):
                 year_col = col
-            elif 'month' in col_lower or 'monat' in col_lower:
+            if month_col is None and ('month' in col_lower or 'monat' in col_lower):
                 month_col = col
 
         if not all([airline_col, airport_col, pax_col]):
@@ -199,18 +213,28 @@ def load_bazl_data(file_path: str, start_date: datetime, end_date: datetime) -> 
             )
             df = df[(df['Date'] >= start_date) & (df['Date'] <= end_date)]
 
-        # Rename and select columns
-        df = df.rename(columns={
-            airline_col: 'Airline',
-            airport_col: 'Airport',
-            pax_col: 'PAX'
+        # Create a clean dataframe with only the columns we need
+        clean_df = pd.DataFrame({
+            'Airline': df[airline_col],
+            'Airport': df[airport_col],
+            'PAX': df[pax_col]
         })
 
+        # Add date columns if they exist
+        if 'Year' in df.columns and 'Month' in df.columns:
+            clean_df['Year'] = df['Year']
+            clean_df['Month'] = df['Month']
+        if 'Date' in df.columns:
+            clean_df['Date'] = df['Date']
+
         # Create PAX lookup by (Airline, Airport)
-        pax_agg = df.groupby(['Airline', 'Airport'])['PAX'].sum().to_dict()
+        pax_agg = clean_df.groupby(['Airline', 'Airport'])['PAX'].sum().to_dict()
 
         # Also create monthly PAX for quality checks
-        monthly_pax = df.groupby(['Airline', 'Airport', 'Date'])['PAX'].sum().reset_index()
+        if 'Date' in clean_df.columns:
+            monthly_pax = clean_df.groupby(['Airline', 'Airport', 'Date'])['PAX'].sum().reset_index()
+        else:
+            monthly_pax = pd.DataFrame()
 
         return pax_agg, monthly_pax
 

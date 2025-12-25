@@ -19,8 +19,8 @@
       "density": null,
       "confidence": 0,
       "priority": "UNRELIABLE",
-      "originLat": 41.2753,
-      "originLng": 28.7519,
+      "originLat": 41.27533,
+      "originLng": 28.752,
       "originCity": "Istanbul",
       "originCountry": "TR"
     },
@@ -32,8 +32,8 @@
       "density": null,
       "confidence": 0,
       "priority": "UNRELIABLE",
-      "originLat": 51.47,
-      "originLng": -0.4543,
+      "originLat": 51.4706,
+      "originLng": -0.46194,
       "originCity": "London",
       "originCountry": "GB"
     },
@@ -45,23 +45,10 @@
       "density": null,
       "confidence": 0,
       "priority": "UNRELIABLE",
-      "originLat": null,
-      "originLng": null,
-      "originCity": null,
-      "originCountry": null
-    },
-    {
-      "airline": "QR",
-      "lastStop": "DOH",
-      "inad": 14,
-      "pax": 0,
-      "density": null,
-      "confidence": 0,
-      "priority": "UNRELIABLE",
-      "originLat": 25.2731,
-      "originLng": 51.6081,
-      "originCity": "Doha",
-      "originCountry": "QA"
+      "originLat": 45.4706,
+      "originLng": -73.7408,
+      "originCity": "Dorval",
+      "originCountry": "CA"
     },
     {
       "airline": "GM",
@@ -71,10 +58,23 @@
       "density": null,
       "confidence": 0,
       "priority": "UNRELIABLE",
-      "originLat": null,
-      "originLng": null,
-      "originCity": null,
-      "originCountry": null
+      "originLat": 33.8209,
+      "originLng": 35.4884,
+      "originCity": "Beirut",
+      "originCountry": "LB"
+    },
+    {
+      "airline": "QR",
+      "lastStop": "DOH",
+      "inad": 14,
+      "pax": 0,
+      "density": null,
+      "confidence": 0,
+      "priority": "UNRELIABLE",
+      "originLat": 25.26059,
+      "originLng": 51.61377,
+      "originCity": "Doha",
+      "originCountry": "QA"
     },
     {
       "airline": "BA",
@@ -84,8 +84,8 @@
       "density": null,
       "confidence": 0,
       "priority": "UNRELIABLE",
-      "originLat": 51.47,
-      "originLng": -0.4543,
+      "originLat": 51.4706,
+      "originLng": -0.46194,
       "originCity": "London",
       "originCountry": "GB"
     },
@@ -97,10 +97,10 @@
       "density": null,
       "confidence": 0,
       "priority": "UNRELIABLE",
-      "originLat": null,
-      "originLng": null,
-      "originCity": null,
-      "originCountry": null
+      "originLat": 38.9,
+      "originLng": -77.5,
+      "originCity": "Washington",
+      "originCountry": "US"
     },
     {
       "airline": "LX",
@@ -110,23 +110,10 @@
       "density": null,
       "confidence": 0,
       "priority": "UNRELIABLE",
-      "originLat": -23.4356,
-      "originLng": -46.4731,
+      "originLat": -23.43556,
+      "originLng": -46.47306,
       "originCity": "Sao Paulo",
       "originCountry": "BR"
-    },
-    {
-      "airline": "UA",
-      "lastStop": "ORD",
-      "inad": 8,
-      "pax": 0,
-      "density": null,
-      "confidence": 0,
-      "priority": "UNRELIABLE",
-      "originLat": 41.9742,
-      "originLng": -87.9073,
-      "originCity": "Chicago",
-      "originCountry": "US"
     },
     {
       "airline": "LX",
@@ -142,17 +129,17 @@
       "originCountry": "IL"
     },
     {
-      "airline": "AC",
-      "lastStop": "YYZ",
-      "inad": 7,
+      "airline": "UA",
+      "lastStop": "ORD",
+      "inad": 8,
       "pax": 0,
       "density": null,
       "confidence": 0,
       "priority": "UNRELIABLE",
-      "originLat": 43.6777,
-      "originLng": -79.6248,
-      "originCity": "Toronto",
-      "originCountry": "CA"
+      "originLat": 41.97694,
+      "originLng": -87.90815,
+      "originCity": "Chicago",
+      "originCountry": "US"
     },
     {
       "airline": "LX",
@@ -162,10 +149,10 @@
       "density": null,
       "confidence": 0,
       "priority": "UNRELIABLE",
-      "originLat": null,
-      "originLng": null,
-      "originCity": null,
-      "originCountry": null
+      "originLat": 53.3537,
+      "originLng": -2.27495,
+      "originCity": "Manchester",
+      "originCountry": "GB"
     },
     {
       "airline": "UA",
@@ -175,36 +162,36 @@
       "density": null,
       "confidence": 0,
       "priority": "UNRELIABLE",
-      "originLat": null,
-      "originLng": null,
-      "originCity": null,
-      "originCountry": null
+      "originLat": 40.69248,
+      "originLng": -74.16869,
+      "originCity": "Newark",
+      "originCountry": "US"
     },
     {
-      "airline": "JU",
-      "lastStop": "BEG",
+      "airline": "AC",
+      "lastStop": "YYZ",
+      "inad": 7,
+      "pax": 0,
+      "density": null,
+      "confidence": 0,
+      "priority": "UNRELIABLE",
+      "originLat": 43.6772,
+      "originLng": -79.6306,
+      "originCity": "Mississauga",
+      "originCountry": "CA"
+    },
+    {
+      "airline": "PC",
+      "lastStop": "SAW",
       "inad": 6,
       "pax": 0,
       "density": null,
       "confidence": 0,
       "priority": "UNRELIABLE",
-      "originLat": 44.8184,
-      "originLng": 20.3091,
-      "originCity": "Belgrade",
-      "originCountry": "RS"
-    },
-    {
-      "airline": "LX",
-      "lastStop": "DUB",
-      "inad": 6,
-      "pax": 0,
-      "density": null,
-      "confidence": 0,
-      "priority": "UNRELIABLE",
-      "originLat": 53.4264,
-      "originLng": -6.2499,
-      "originCity": "Dublin",
-      "originCountry": "IE"
+      "originLat": 40.8986,
+      "originLng": 29.3092,
+      "originCity": "Istanbul",
+      "originCountry": "TR"
     },
     {
       "airline": "SV",
@@ -220,17 +207,30 @@
       "originCountry": "SA"
     },
     {
-      "airline": "PC",
-      "lastStop": "SAW",
+      "airline": "LX",
+      "lastStop": "DUB",
       "inad": 6,
       "pax": 0,
       "density": null,
       "confidence": 0,
       "priority": "UNRELIABLE",
-      "originLat": 40.8986,
-      "originLng": 29.3092,
-      "originCity": "Istanbul",
-      "originCountry": "TR"
+      "originLat": 53.4213,
+      "originLng": -6.27007,
+      "originCity": "Dublin",
+      "originCountry": "IE"
+    },
+    {
+      "airline": "JU",
+      "lastStop": "BEG",
+      "inad": 6,
+      "pax": 0,
+      "density": null,
+      "confidence": 0,
+      "priority": "UNRELIABLE",
+      "originLat": 44.8184,
+      "originLng": 20.3091,
+      "originCity": "Belgrad",
+      "originCountry": "RS"
     }
   ],
   "airlines": [
@@ -279,11 +279,11 @@
       "inadCount": 6
     },
     {
-      "airline": "SV",
+      "airline": "PC",
       "inadCount": 6
     },
     {
-      "airline": "PC",
+      "airline": "SV",
       "inadCount": 6
     }
   ],
@@ -304,13 +304,13 @@
       "inadCount": 20
     },
     {
-      "airline": "QR",
-      "lastStop": "DOH",
+      "airline": "GM",
+      "lastStop": "BEY",
       "inadCount": 14
     },
     {
-      "airline": "GM",
-      "lastStop": "BEY",
+      "airline": "QR",
+      "lastStop": "DOH",
       "inadCount": 14
     },
     {
@@ -329,19 +329,14 @@
       "inadCount": 9
     },
     {
-      "airline": "UA",
-      "lastStop": "ORD",
-      "inadCount": 8
-    },
-    {
       "airline": "LX",
       "lastStop": "TLV",
       "inadCount": 8
     },
     {
-      "airline": "AC",
-      "lastStop": "YYZ",
-      "inadCount": 7
+      "airline": "UA",
+      "lastStop": "ORD",
+      "inadCount": 8
     },
     {
       "airline": "LX",
@@ -354,13 +349,13 @@
       "inadCount": 7
     },
     {
-      "airline": "JU",
-      "lastStop": "BEG",
-      "inadCount": 6
+      "airline": "AC",
+      "lastStop": "YYZ",
+      "inadCount": 7
     },
     {
-      "airline": "LX",
-      "lastStop": "DUB",
+      "airline": "PC",
+      "lastStop": "SAW",
       "inadCount": 6
     },
     {
@@ -369,8 +364,13 @@
       "inadCount": 6
     },
     {
-      "airline": "PC",
-      "lastStop": "SAW",
+      "airline": "LX",
+      "lastStop": "DUB",
+      "inadCount": 6
+    },
+    {
+      "airline": "JU",
+      "lastStop": "BEG",
       "inadCount": 6
     }
   ],
@@ -381,5 +381,5 @@
     "threshold_method": "median",
     "high_priority_multiplier": 1.5
   },
-  "generated_at": "2025-12-24T22:47:06.741192"
+  "generated_at": "2025-12-25T02:26:11.241678"
 }

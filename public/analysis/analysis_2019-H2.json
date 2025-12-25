@@ -19,9 +19,9 @@
       "density": null,
       "confidence": 0,
       "priority": "UNRELIABLE",
-      "originLat": 43.6777,
-      "originLng": -79.6248,
-      "originCity": "Toronto",
+      "originLat": 43.6772,
+      "originLng": -79.6306,
+      "originCity": "Mississauga",
       "originCountry": "CA"
     },
     {
@@ -32,8 +32,8 @@
       "density": null,
       "confidence": 0,
       "priority": "UNRELIABLE",
-      "originLat": 41.2753,
-      "originLng": 28.7519,
+      "originLat": 41.27533,
+      "originLng": 28.752,
       "originCity": "Istanbul",
       "originCountry": "TR"
     },
@@ -45,8 +45,8 @@
       "density": null,
       "confidence": 0,
       "priority": "UNRELIABLE",
-      "originLat": 51.47,
-      "originLng": -0.4543,
+      "originLat": 51.4706,
+      "originLng": -0.46194,
       "originCity": "London",
       "originCountry": "GB"
     },
@@ -71,9 +71,9 @@
       "density": null,
       "confidence": 0,
       "priority": "UNRELIABLE",
-      "originLat": 42.5728,
-      "originLng": 21.0358,
-      "originCity": "Pristina",
+      "originLat": 42.57283,
+      "originLng": 21.03583,
+      "originCity": "Lipjan",
       "originCountry": "XK"
     },
     {
@@ -86,7 +86,7 @@
       "priority": "UNRELIABLE",
       "originLat": 44.8184,
       "originLng": 20.3091,
-      "originCity": "Belgrade",
+      "originCity": "Belgrad",
       "originCountry": "RS"
     },
     {
@@ -97,8 +97,8 @@
       "density": null,
       "confidence": 0,
       "priority": "UNRELIABLE",
-      "originLat": 53.4264,
-      "originLng": -6.2499,
+      "originLat": 53.4213,
+      "originLng": -6.27007,
       "originCity": "Dublin",
       "originCountry": "IE"
     },
@@ -110,8 +110,8 @@
       "density": null,
       "confidence": 0,
       "priority": "UNRELIABLE",
-      "originLat": 53.4264,
-      "originLng": -6.2499,
+      "originLat": 53.4213,
+      "originLng": -6.27007,
       "originCity": "Dublin",
       "originCountry": "IE"
     },
@@ -125,7 +125,7 @@
       "priority": "UNRELIABLE",
       "originLat": 44.8184,
       "originLng": 20.3091,
-      "originCity": "Belgrade",
+      "originCity": "Belgrad",
       "originCountry": "RS"
     },
     {
@@ -136,8 +136,8 @@
       "density": null,
       "confidence": 0,
       "priority": "UNRELIABLE",
-      "originLat": 40.6413,
-      "originLng": -73.7781,
+      "originLat": 40.63993,
+      "originLng": -73.77869,
       "originCity": "New York",
       "originCountry": "US"
     },
@@ -149,10 +149,10 @@
       "density": null,
       "confidence": 0,
       "priority": "UNRELIABLE",
-      "originLat": null,
-      "originLng": null,
-      "originCity": null,
-      "originCountry": null
+      "originLat": -6.87811,
+      "originLng": 39.2026,
+      "originCity": "Dar es Salaam",
+      "originCountry": "TZ"
     },
     {
       "airline": "LX",
@@ -162,8 +162,8 @@
       "density": null,
       "confidence": 0,
       "priority": "UNRELIABLE",
-      "originLat": 51.47,
-      "originLng": -0.4543,
+      "originLat": 51.4706,
+      "originLng": -0.46194,
       "originCity": "London",
       "originCountry": "GB"
     }
@@ -279,5 +279,5 @@
     "threshold_method": "median",
     "high_priority_multiplier": 1.5
   },
-  "generated_at": "2025-12-24T22:45:53.653417"
+  "generated_at": "2025-12-25T02:25:45.011425"
 }

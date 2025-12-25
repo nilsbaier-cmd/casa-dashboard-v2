@@ -1,4 +1,61 @@
 {
-  "cases": [],
-  "generated_at": "2025-12-24T22:48:08.132358"
+  "cases": [
+    {
+      "airline": "LX",
+      "lastStop": "DUB",
+      "appearances": 2,
+      "consecutive": true,
+      "trend": "IMPROVING",
+      "latestPriority": "WATCH_LIST"
+    },
+    {
+      "airline": "LX",
+      "lastStop": "YUL",
+      "appearances": 4,
+      "consecutive": true,
+      "trend": "IMPROVING",
+      "latestPriority": "WATCH_LIST"
+    },
+    {
+      "airline": "LX",
+      "lastStop": "JNB",
+      "appearances": 2,
+      "consecutive": true,
+      "trend": "IMPROVING",
+      "latestPriority": "WATCH_LIST"
+    },
+    {
+      "airline": "UA",
+      "lastStop": "IAD",
+      "appearances": 2,
+      "consecutive": true,
+      "trend": "IMPROVING",
+      "latestPriority": "WATCH_LIST"
+    },
+    {
+      "airline": "LX",
+      "lastStop": "BOS",
+      "appearances": 3,
+      "consecutive": true,
+      "trend": "IMPROVING",
+      "latestPriority": "WATCH_LIST"
+    },
+    {
+      "airline": "UA",
+      "lastStop": "ORD",
+      "appearances": 2,
+      "consecutive": true,
+      "trend": "IMPROVING",
+      "latestPriority": "WATCH_LIST"
+    },
+    {
+      "airline": "AC",
+      "lastStop": "YYZ",
+      "appearances": 3,
+      "consecutive": true,
+      "trend": "IMPROVING",
+      "latestPriority": "WATCH_LIST"
+    }
+  ],
+  "generated_at": "2025-12-25T02:26:33.097459"
 }

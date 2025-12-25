@@ -17,7 +17,7 @@ const GlobeView = ({ routes = [], translations = {}, onRouteSelect }) => {
   const globeRef = useRef();
   const containerRef = useRef();
   const [selectedPriorities, setSelectedPriorities] = useState(['HIGH_PRIORITY', 'WATCH_LIST', 'CLEAR']);
-  const [minInad, setMinInad] = useState(1);
+  const [minInad, setMinInad] = useState(6);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   const t = {

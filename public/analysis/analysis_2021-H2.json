@@ -19,8 +19,8 @@
       "density": null,
       "confidence": 0,
       "priority": "UNRELIABLE",
-      "originLat": -23.4356,
-      "originLng": -46.4731,
+      "originLat": -23.43556,
+      "originLng": -46.47306,
       "originCity": "Sao Paulo",
       "originCountry": "BR"
     },
@@ -32,8 +32,8 @@
       "density": null,
       "confidence": 0,
       "priority": "UNRELIABLE",
-      "originLat": 51.47,
-      "originLng": -0.4543,
+      "originLat": 51.4706,
+      "originLng": -0.46194,
       "originCity": "London",
       "originCountry": "GB"
     },
@@ -45,9 +45,22 @@
       "density": null,
       "confidence": 0,
       "priority": "UNRELIABLE",
-      "originLat": 25.7959,
-      "originLng": -80.287,
+      "originLat": 25.79536,
+      "originLng": -80.29012,
       "originCity": "Miami",
+      "originCountry": "US"
+    },
+    {
+      "airline": "LX",
+      "lastStop": "EWR",
+      "inad": 7,
+      "pax": 0,
+      "density": null,
+      "confidence": 0,
+      "priority": "UNRELIABLE",
+      "originLat": 40.69248,
+      "originLng": -74.16869,
+      "originCity": "Newark",
       "originCountry": "US"
     },
     {
@@ -58,23 +71,10 @@
       "density": null,
       "confidence": 0,
       "priority": "UNRELIABLE",
-      "originLat": null,
-      "originLng": null,
-      "originCity": null,
-      "originCountry": null
-    },
-    {
-      "airline": "LX",
-      "lastStop": "EWR",
-      "inad": 7,
-      "pax": 0,
-      "density": null,
-      "confidence": 0,
-      "priority": "UNRELIABLE",
-      "originLat": null,
-      "originLng": null,
-      "originCity": null,
-      "originCountry": null
+      "originLat": 45.4706,
+      "originLng": -73.7408,
+      "originCity": "Dorval",
+      "originCountry": "CA"
     },
     {
       "airline": "LX",
@@ -84,8 +84,8 @@
       "density": null,
       "confidence": 0,
       "priority": "UNRELIABLE",
-      "originLat": 40.6413,
-      "originLng": -73.7781,
+      "originLat": 40.63993,
+      "originLng": -73.77869,
       "originCity": "New York",
       "originCountry": "US"
     },
@@ -97,8 +97,8 @@
       "density": null,
       "confidence": 0,
       "priority": "UNRELIABLE",
-      "originLat": -26.1392,
-      "originLng": 28.246,
+      "originLat": -26.13367,
+      "originLng": 28.24233,
       "originCity": "Johannesburg",
       "originCountry": "ZA"
     }
@@ -139,12 +139,12 @@
     },
     {
       "airline": "LX",
-      "lastStop": "YUL",
+      "lastStop": "EWR",
       "inadCount": 7
     },
     {
       "airline": "LX",
-      "lastStop": "EWR",
+      "lastStop": "YUL",
       "inadCount": 7
     },
     {
@@ -165,5 +165,5 @@
     "threshold_method": "median",
     "high_priority_multiplier": 1.5
   },
-  "generated_at": "2025-12-24T22:46:41.690307"
+  "generated_at": "2025-12-25T02:26:02.596421"
 }
