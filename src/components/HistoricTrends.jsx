@@ -21,7 +21,12 @@ const HistoricTrends = ({ translations }) => {
   // Load historic data when component mounts
   useEffect(() => {
     if (dataReady && semesters.length >= 2 && !hasLoaded && !historicData) {
-      fetchHistoricData().then(() => setHasLoaded(true));
+      fetchHistoricData()
+        .then(() => setHasLoaded(true))
+        .catch((err) => {
+          console.error('Failed to load historic data:', err);
+          setHasLoaded(true); // Prevent infinite retry
+        });
     }
   }, [dataReady, semesters, hasLoaded, historicData, fetchHistoricData]);
 
