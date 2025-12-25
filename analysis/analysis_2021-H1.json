@@ -1,0 +1,29 @@
+{
+  "semester": "2021-H1",
+  "summary": {
+    "total_inad": 32,
+    "high_priority": 0,
+    "watch_list": 0,
+    "unreliable": 0,
+    "clear": 0,
+    "threshold": 0.1,
+    "method": "median"
+  },
+  "threshold": 0.1,
+  "routes": [],
+  "airlines": [
+    {
+      "airline": "LX",
+      "inadCount": 18
+    }
+  ],
+  "step2Routes": [],
+  "config": {
+    "min_inad": 6,
+    "min_pax": 5000,
+    "min_density": 0.1,
+    "threshold_method": "median",
+    "high_priority_multiplier": 1.5
+  },
+  "generated_at": "2025-12-25T01:04:26.000110"
+}

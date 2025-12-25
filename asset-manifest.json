@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/casa-dashboard-v2/static/css/main.ecd566a0.css",
-    "main.js": "/casa-dashboard-v2/static/js/main.a456b67f.js",
+    "main.js": "/casa-dashboard-v2/static/js/main.de997c7d.js",
     "static/js/239.2b33c160.chunk.js": "/casa-dashboard-v2/static/js/239.2b33c160.chunk.js",
     "index.html": "/casa-dashboard-v2/index.html",
     "main.ecd566a0.css.map": "/casa-dashboard-v2/static/css/main.ecd566a0.css.map",
-    "main.a456b67f.js.map": "/casa-dashboard-v2/static/js/main.a456b67f.js.map",
+    "main.de997c7d.js.map": "/casa-dashboard-v2/static/js/main.de997c7d.js.map",
     "239.2b33c160.chunk.js.map": "/casa-dashboard-v2/static/js/239.2b33c160.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ecd566a0.css",
-    "static/js/main.a456b67f.js"
+    "static/js/main.de997c7d.js"
   ]
 }

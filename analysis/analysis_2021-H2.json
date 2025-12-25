@@ -1,0 +1,169 @@
+{
+  "semester": "2021-H2",
+  "summary": {
+    "total_inad": 179,
+    "high_priority": 0,
+    "watch_list": 0,
+    "unreliable": 7,
+    "clear": 0,
+    "threshold": 0.1,
+    "method": "median"
+  },
+  "threshold": 0.1,
+  "routes": [
+    {
+      "airline": "LX",
+      "lastStop": "GRU",
+      "inad": 12,
+      "pax": 0,
+      "density": null,
+      "confidence": 0,
+      "priority": "UNRELIABLE",
+      "originLat": -23.43556,
+      "originLng": -46.47306,
+      "originCity": "Sao Paulo",
+      "originCountry": "BR"
+    },
+    {
+      "airline": "LX",
+      "lastStop": "LHR",
+      "inad": 10,
+      "pax": 0,
+      "density": null,
+      "confidence": 0,
+      "priority": "UNRELIABLE",
+      "originLat": 51.4706,
+      "originLng": -0.46194,
+      "originCity": "London",
+      "originCountry": "GB"
+    },
+    {
+      "airline": "LX",
+      "lastStop": "MIA",
+      "inad": 8,
+      "pax": 0,
+      "density": null,
+      "confidence": 0,
+      "priority": "UNRELIABLE",
+      "originLat": 25.79536,
+      "originLng": -80.29012,
+      "originCity": "Miami",
+      "originCountry": "US"
+    },
+    {
+      "airline": "LX",
+      "lastStop": "YUL",
+      "inad": 7,
+      "pax": 0,
+      "density": null,
+      "confidence": 0,
+      "priority": "UNRELIABLE",
+      "originLat": 45.4706,
+      "originLng": -73.7408,
+      "originCity": "Dorval",
+      "originCountry": "CA"
+    },
+    {
+      "airline": "LX",
+      "lastStop": "EWR",
+      "inad": 7,
+      "pax": 0,
+      "density": null,
+      "confidence": 0,
+      "priority": "UNRELIABLE",
+      "originLat": 40.69248,
+      "originLng": -74.16869,
+      "originCity": "Newark",
+      "originCountry": "US"
+    },
+    {
+      "airline": "LX",
+      "lastStop": "JFK",
+      "inad": 6,
+      "pax": 0,
+      "density": null,
+      "confidence": 0,
+      "priority": "UNRELIABLE",
+      "originLat": 40.63993,
+      "originLng": -73.77869,
+      "originCity": "New York",
+      "originCountry": "US"
+    },
+    {
+      "airline": "LX",
+      "lastStop": "JNB",
+      "inad": 6,
+      "pax": 0,
+      "density": null,
+      "confidence": 0,
+      "priority": "UNRELIABLE",
+      "originLat": -26.13367,
+      "originLng": 28.24233,
+      "originCity": "Johannesburg",
+      "originCountry": "ZA"
+    }
+  ],
+  "airlines": [
+    {
+      "airline": "LX",
+      "inadCount": 96
+    },
+    {
+      "airline": "UA",
+      "inadCount": 10
+    },
+    {
+      "airline": "GM",
+      "inadCount": 7
+    },
+    {
+      "airline": "TK",
+      "inadCount": 7
+    }
+  ],
+  "step2Routes": [
+    {
+      "airline": "LX",
+      "lastStop": "GRU",
+      "inadCount": 12
+    },
+    {
+      "airline": "LX",
+      "lastStop": "LHR",
+      "inadCount": 10
+    },
+    {
+      "airline": "LX",
+      "lastStop": "MIA",
+      "inadCount": 8
+    },
+    {
+      "airline": "LX",
+      "lastStop": "YUL",
+      "inadCount": 7
+    },
+    {
+      "airline": "LX",
+      "lastStop": "EWR",
+      "inadCount": 7
+    },
+    {
+      "airline": "LX",
+      "lastStop": "JFK",
+      "inadCount": 6
+    },
+    {
+      "airline": "LX",
+      "lastStop": "JNB",
+      "inadCount": 6
+    }
+  ],
+  "config": {
+    "min_inad": 6,
+    "min_pax": 5000,
+    "min_density": 0.1,
+    "threshold_method": "median",
+    "high_priority_multiplier": 1.5
+  },
+  "generated_at": "2025-12-25T01:04:32.175645"
+}
