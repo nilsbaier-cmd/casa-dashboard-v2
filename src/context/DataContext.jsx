@@ -9,6 +9,18 @@ import api from '../services/api';
 // Create context
 const DataContext = createContext(null);
 
+// Helper to detect if we're in static mode (GitHub Pages or no backend configured)
+const isStaticMode = () => {
+  // Check if we're on GitHub Pages
+  if (window.location.hostname.includes('github.io')) return true;
+  // Check if no API URL is configured
+  if (!process.env.REACT_APP_API_URL || process.env.REACT_APP_API_URL === '') return true;
+  return false;
+};
+
+// Helper to get the base path for static analysis files
+const getStaticBasePath = () => `${process.env.PUBLIC_URL || ''}/analysis`;
+
 // Provider component
 export const DataProvider = ({ children }) => {
   // Data loading state
@@ -159,11 +171,36 @@ export const DataProvider = ({ children }) => {
     }
   }, [currentSemester]);
 
-  // Get historic data
+  // Get historic data - handles both static and dynamic modes
   const fetchHistoricData = useCallback(async (semesterList = null) => {
     const sems = semesterList || semesters.map(s => s.value);
     if (sems.length === 0) return null;
 
+    // In static mode, load from pre-generated JSON or return cached data
+    if (isStaticMode()) {
+      // If we already have historic data, return it
+      if (historicData) return historicData;
+
+      setIsLoading(true);
+      setError(null);
+      try {
+        const basePath = getStaticBasePath();
+        const historicRes = await fetch(`${basePath}/historic.json`);
+        if (historicRes.ok) {
+          const result = await historicRes.json();
+          setHistoricData(result);
+          return result;
+        }
+        return null;
+      } catch (err) {
+        console.error('Failed to load historic data:', err);
+        return null;
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    // Dynamic mode - use API
     setIsLoading(true);
     setError(null);
 
@@ -177,13 +214,38 @@ export const DataProvider = ({ children }) => {
     } finally {
       setIsLoading(false);
     }
-  }, [semesters]);
+  }, [semesters, historicData]);
 
-  // Get systemic cases
+  // Get systemic cases - handles both static and dynamic modes
   const fetchSystemicCases = useCallback(async (semesterList = null) => {
     const sems = semesterList || semesters.map(s => s.value);
     if (sems.length === 0) return null;
 
+    // In static mode, load from pre-generated JSON or return cached data
+    if (isStaticMode()) {
+      // If we already have systemic cases data, return it
+      if (systemicCases) return systemicCases;
+
+      setIsLoading(true);
+      setError(null);
+      try {
+        const basePath = getStaticBasePath();
+        const systemicRes = await fetch(`${basePath}/systemic.json`);
+        if (systemicRes.ok) {
+          const result = await systemicRes.json();
+          setSystemicCases(result);
+          return result;
+        }
+        return null;
+      } catch (err) {
+        console.error('Failed to load systemic cases:', err);
+        return null;
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    // Dynamic mode - use API
     setIsLoading(true);
     setError(null);
 
@@ -197,7 +259,7 @@ export const DataProvider = ({ children }) => {
     } finally {
       setIsLoading(false);
     }
-  }, [semesters]);
+  }, [semesters, systemicCases]);
 
   // Update configuration
   const updateConfig = useCallback(async (newConfig) => {
@@ -222,10 +284,33 @@ export const DataProvider = ({ children }) => {
     }
   }, [currentSemester, runAnalysis]);
 
-  // Change semester
+  // Change semester - handles both static and dynamic modes
   const changeSemester = useCallback(async (semester) => {
     setCurrentSemester(semester);
-    await runAnalysis(semester);
+
+    // In static mode, load from pre-generated JSON files
+    if (isStaticMode()) {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const basePath = getStaticBasePath();
+        const analysisRes = await fetch(`${basePath}/analysis_${semester}.json`);
+        if (analysisRes.ok) {
+          const analysisJson = await analysisRes.json();
+          setAnalysisData(analysisJson);
+        } else {
+          setError(`Failed to load analysis data for ${semester}`);
+        }
+      } catch (err) {
+        console.error('Failed to load semester data:', err);
+        setError('Failed to load semester data');
+      } finally {
+        setIsLoading(false);
+      }
+    } else {
+      // In dynamic mode, use the API
+      await runAnalysis(semester);
+    }
   }, [runAnalysis]);
 
   // Clear error
@@ -245,6 +330,7 @@ export const DataProvider = ({ children }) => {
     historicData,
     systemicCases,
     config,
+    isStaticMode: isStaticMode(), // Expose static mode status to components
 
     // Actions
     uploadFiles,

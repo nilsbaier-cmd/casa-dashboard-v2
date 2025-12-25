@@ -188,7 +188,12 @@ const SystemicTab = ({ t }) => {
   // Fetch systemic cases when tab is active
   useEffect(() => {
     if (dataReady && semesters.length >= 2 && !hasLoaded && !systemicCases) {
-      fetchSystemicCases().then(() => setHasLoaded(true)).catch(() => {});
+      fetchSystemicCases()
+        .then(() => setHasLoaded(true))
+        .catch((err) => {
+          console.error('Failed to load systemic cases:', err);
+          setHasLoaded(true); // Prevent infinite retry
+        });
     }
   }, [dataReady, semesters, hasLoaded, systemicCases, fetchSystemicCases]);
 

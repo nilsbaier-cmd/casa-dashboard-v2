@@ -45,36 +45,40 @@ const GlobeView = ({ routes = [], translations = {}, onRouteSelect }) => {
     );
   }, [routes, selectedPriorities, minInad]);
 
-  // Generate arc data
+  // Generate arc data - filter out routes with missing coordinates
   const arcsData = useMemo(() => {
-    return filteredRoutes.map(route => ({
-      startLat: route.originLat,
-      startLng: route.originLng,
-      endLat: SWITZERLAND.lat,
-      endLng: SWITZERLAND.lng,
-      color: [PRIORITY_COLORS[route.priority], '#0D9488'],
-      stroke: Math.min(Math.max(route.inad / 3, 1), 5),
-      ...route,
-    }));
+    return filteredRoutes
+      .filter(route => route.originLat != null && route.originLng != null)
+      .map(route => ({
+        startLat: route.originLat,
+        startLng: route.originLng,
+        endLat: SWITZERLAND.lat,
+        endLng: SWITZERLAND.lng,
+        color: [PRIORITY_COLORS[route.priority], '#0D9488'],
+        stroke: Math.min(Math.max(route.inad / 3, 1), 5),
+        ...route,
+      }));
   }, [filteredRoutes]);
 
-  // Generate points data
+  // Generate points data - filter out routes with missing coordinates
   const pointsData = useMemo(() => {
     const uniqueOrigins = new Map();
-    filteredRoutes.forEach(route => {
-      if (!uniqueOrigins.has(route.lastStop)) {
-        uniqueOrigins.set(route.lastStop, {
-          lat: route.originLat,
-          lng: route.originLng,
-          name: route.lastStop,
-          city: route.originCity,
-          size: Math.min(Math.max(route.inad * 0.3, 0.3), 1.5),
-          color: PRIORITY_COLORS[route.priority],
-          inad: route.inad,
-          priority: route.priority,
-        });
-      }
-    });
+    filteredRoutes
+      .filter(route => route.originLat != null && route.originLng != null)
+      .forEach(route => {
+        if (!uniqueOrigins.has(route.lastStop)) {
+          uniqueOrigins.set(route.lastStop, {
+            lat: route.originLat,
+            lng: route.originLng,
+            name: route.lastStop,
+            city: route.originCity,
+            size: Math.min(Math.max(route.inad * 0.3, 0.3), 1.5),
+            color: PRIORITY_COLORS[route.priority],
+            inad: route.inad,
+            priority: route.priority,
+          });
+        }
+      });
     
     uniqueOrigins.set('Switzerland', {
       lat: SWITZERLAND.lat,

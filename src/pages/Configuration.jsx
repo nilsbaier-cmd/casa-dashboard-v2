@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Settings, Save, RefreshCw, Upload, Server, FileSpreadsheet } from 'lucide-react';
+import { Settings, Save, RefreshCw, Upload, Server, FileSpreadsheet, Info } from 'lucide-react';
 import { useData } from '../context/DataContext';
 
 const Configuration = ({ translations = {} }) => {
@@ -11,7 +11,8 @@ const Configuration = ({ translations = {} }) => {
     isLoading,
     dataReady,
     runAnalysis,
-    currentSemester
+    currentSemester,
+    isStaticMode
   } = useData();
 
   // Local state for form
@@ -48,6 +49,9 @@ const Configuration = ({ translations = {} }) => {
     bazlFile: translations.bazlFile || 'BAZL-Daten File',
     inadPath: translations.inadPath || 'INAD-Tabelle Path',
     bazlPath: translations.bazlPath || 'BAZL-Daten Path',
+    staticModeTitle: translations.staticModeTitle || 'Static Deployment Mode',
+    staticModeDescription: translations.staticModeDescription || 'This dashboard is running in static mode (GitHub Pages). Data upload and configuration changes are not available. Data is pre-generated during the deployment process.',
+    staticModeHint: translations.staticModeHint || 'To update the data, commit new INAD and BAZL files to the repository\'s data/ folder. The analysis will run automatically during deployment.',
     loadData: translations.loadData || 'Load Data',
     analysisParameters: translations.analysisParameters || 'Analysis Parameters',
     minInad: translations.minInad || 'Minimum INAD Cases',
@@ -133,6 +137,31 @@ const Configuration = ({ translations = {} }) => {
         <p className="page-subtitle">{t.pageSubtitle}</p>
       </div>
 
+      {/* Static Mode Info Banner */}
+      {isStaticMode && (
+        <div style={{
+          background: 'var(--bg-tertiary)',
+          border: '1px solid var(--border-color)',
+          borderRadius: '12px',
+          padding: '20px',
+          marginBottom: '24px',
+          display: 'flex',
+          alignItems: 'flex-start',
+          gap: '16px'
+        }}>
+          <Info size={24} style={{ color: 'var(--color-primary)', flexShrink: 0 }} />
+          <div>
+            <h3 style={{ marginBottom: '8px', color: 'var(--text-primary)' }}>{t.staticModeTitle}</h3>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', margin: '0 0 8px 0' }}>
+              {t.staticModeDescription}
+            </p>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.8rem', margin: 0, fontStyle: 'italic' }}>
+              {t.staticModeHint}
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* Message Banner */}
       {message && (
         <div style={{
@@ -168,6 +197,8 @@ const Configuration = ({ translations = {} }) => {
             <button
               className={`btn ${dataSource === 'upload' ? 'btn-primary' : 'btn-secondary'}`}
               onClick={() => setDataSource('upload')}
+              disabled={isStaticMode}
+              style={isStaticMode ? { opacity: 0.5, cursor: 'not-allowed' } : {}}
             >
               <Upload size={16} />
               {t.uploadFiles}
@@ -175,6 +206,8 @@ const Configuration = ({ translations = {} }) => {
             <button
               className={`btn ${dataSource === 'server' ? 'btn-primary' : 'btn-secondary'}`}
               onClick={() => setDataSource('server')}
+              disabled={isStaticMode}
+              style={isStaticMode ? { opacity: 0.5, cursor: 'not-allowed' } : {}}
             >
               <Server size={16} />
               {t.useServerFiles}
@@ -182,7 +215,7 @@ const Configuration = ({ translations = {} }) => {
           </div>
 
           {dataSource === 'upload' ? (
-            <div>
+            <div style={isStaticMode ? { opacity: 0.5, pointerEvents: 'none' } : {}}>
               <div style={{ marginBottom: '16px' }}>
                 <label style={{ display: 'block', marginBottom: '8px', fontWeight: 500 }}>
                   {t.inadFile}
@@ -191,6 +224,7 @@ const Configuration = ({ translations = {} }) => {
                   type="file"
                   accept=".xlsx,.xlsm,.xls"
                   onChange={(e) => setInadFile(e.target.files[0])}
+                  disabled={isStaticMode}
                   style={{
                     width: '100%',
                     padding: '8px',
@@ -207,6 +241,7 @@ const Configuration = ({ translations = {} }) => {
                   type="file"
                   accept=".xlsx,.xlsm,.xls"
                   onChange={(e) => setBazlFile(e.target.files[0])}
+                  disabled={isStaticMode}
                   style={{
                     width: '100%',
                     padding: '8px',
@@ -225,7 +260,7 @@ const Configuration = ({ translations = {} }) => {
               </button>
             </div>
           ) : (
-            <div>
+            <div style={isStaticMode ? { opacity: 0.5, pointerEvents: 'none' } : {}}>
               <div style={{ marginBottom: '16px' }}>
                 <label style={{ display: 'block', marginBottom: '8px', fontWeight: 500 }}>
                   {t.inadPath}
@@ -235,6 +270,7 @@ const Configuration = ({ translations = {} }) => {
                   value={inadPath}
                   onChange={(e) => setInadPath(e.target.value)}
                   placeholder="/path/to/INAD-Tabelle.xlsx"
+                  disabled={isStaticMode}
                   style={{
                     width: '100%',
                     padding: '10px 12px',
@@ -252,6 +288,7 @@ const Configuration = ({ translations = {} }) => {
                   value={bazlPath}
                   onChange={(e) => setBazlPath(e.target.value)}
                   placeholder="/path/to/BAZL-Daten.xlsx"
+                  disabled={isStaticMode}
                   style={{
                     width: '100%',
                     padding: '10px 12px',
@@ -263,7 +300,7 @@ const Configuration = ({ translations = {} }) => {
               <button
                 className="btn btn-primary"
                 onClick={handleServerLoad}
-                disabled={isLoading}
+                disabled={isLoading || isStaticMode}
               >
                 <Server size={16} />
                 {isLoading ? 'Loading...' : t.loadData}
@@ -380,7 +417,13 @@ const Configuration = ({ translations = {} }) => {
 
           {/* Action Buttons */}
           <div style={{ display: 'flex', gap: '12px' }}>
-            <button className="btn btn-primary" onClick={handleSaveConfig} disabled={isLoading}>
+            <button
+              className="btn btn-primary"
+              onClick={handleSaveConfig}
+              disabled={isLoading || isStaticMode}
+              title={isStaticMode ? 'Configuration cannot be saved in static mode' : ''}
+              style={isStaticMode ? { opacity: 0.5, cursor: 'not-allowed' } : {}}
+            >
               <Save size={16} />
               {t.saveConfig}
             </button>
