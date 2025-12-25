@@ -116,48 +116,48 @@
       "semester": "2023-H1",
       "summary": {
         "total_inad": 343,
-        "high_priority": 0,
-        "watch_list": 0,
-        "unreliable": 17,
-        "clear": 0,
-        "threshold": 0.1,
+        "high_priority": 3,
+        "watch_list": 5,
+        "unreliable": 1,
+        "clear": 8,
+        "threshold": 0.1588,
         "method": "median"
       },
-      "threshold": 0.1,
-      "highPriorityCount": 0,
-      "watchListCount": 0,
+      "threshold": 0.1588,
+      "highPriorityCount": 3,
+      "watchListCount": 5,
       "totalInad": 343
     },
     {
       "semester": "2023-H2",
       "summary": {
         "total_inad": 351,
-        "high_priority": 0,
-        "watch_list": 0,
-        "unreliable": 19,
-        "clear": 0,
-        "threshold": 0.1,
+        "high_priority": 1,
+        "watch_list": 8,
+        "unreliable": 1,
+        "clear": 9,
+        "threshold": 0.1386,
         "method": "median"
       },
-      "threshold": 0.1,
-      "highPriorityCount": 0,
-      "watchListCount": 0,
+      "threshold": 0.1386,
+      "highPriorityCount": 1,
+      "watchListCount": 8,
       "totalInad": 351
     },
     {
       "semester": "2024-H1",
       "summary": {
         "total_inad": 310,
-        "high_priority": 0,
-        "watch_list": 0,
-        "unreliable": 15,
-        "clear": 0,
-        "threshold": 0.1,
+        "high_priority": 1,
+        "watch_list": 7,
+        "unreliable": 0,
+        "clear": 7,
+        "threshold": 0.1368,
         "method": "median"
       },
-      "threshold": 0.1,
-      "highPriorityCount": 0,
-      "watchListCount": 0,
+      "threshold": 0.1368,
+      "highPriorityCount": 1,
+      "watchListCount": 7,
       "totalInad": 310
     },
     {
@@ -165,15 +165,15 @@
       "summary": {
         "total_inad": 327,
         "high_priority": 0,
-        "watch_list": 0,
-        "unreliable": 14,
-        "clear": 0,
-        "threshold": 0.1,
+        "watch_list": 7,
+        "unreliable": 0,
+        "clear": 7,
+        "threshold": 0.116,
         "method": "median"
       },
-      "threshold": 0.1,
+      "threshold": 0.116,
       "highPriorityCount": 0,
-      "watchListCount": 0,
+      "watchListCount": 7,
       "totalInad": 327
     },
     {
@@ -199,5 +199,5 @@
     "watchListChange": 0,
     "totalChange": 0
   },
-  "generated_at": "2025-12-25T01:05:15.579919"
+  "generated_at": "2025-12-25T01:31:40.294033"
 }
