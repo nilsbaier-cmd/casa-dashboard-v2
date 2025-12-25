@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback } from 'react';
-import { Maximize2, Download, X, Minimize2 } from 'lucide-react';
+import { Maximize2, Download, X } from 'lucide-react';
 
 /**
  * ChartContainer - Wrapper for charts/graphs with fullscreen and download capabilities

@@ -504,7 +504,7 @@ const Dashboard = ({ activeTab, translations, analysisData, isLoading }) => {
   const t = translations;
 
   // Process analysis data or use sample data
-  const { routes, summaryStats, priorityDistributionData, systemicCases } = useMemo(() => {
+  const { routes, summaryStats, priorityDistributionData } = useMemo(() => {
     if (analysisData?.routes) {
       // Use real data from backend
       const routes = analysisData.routes.map(r => ({
@@ -540,8 +540,7 @@ const Dashboard = ({ activeTab, translations, analysisData, isLoading }) => {
       return {
         routes,
         summaryStats: summary,
-        priorityDistributionData: priorityData,
-        systemicCases: defaultSystemicCases
+        priorityDistributionData: priorityData
       };
     }
 
@@ -549,8 +548,7 @@ const Dashboard = ({ activeTab, translations, analysisData, isLoading }) => {
     return {
       routes: sampleRoutes,
       summaryStats: defaultSummaryStats,
-      priorityDistributionData: defaultPriorityData,
-      systemicCases: defaultSystemicCases
+      priorityDistributionData: defaultPriorityData
     };
   }, [analysisData]);
 

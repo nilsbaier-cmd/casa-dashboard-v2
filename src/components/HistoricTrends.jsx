@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { TrendingUp, TrendingDown, Minus, RefreshCw, AlertTriangle, CheckCircle } from 'lucide-react';
+import { TrendingUp, TrendingDown, Minus, RefreshCw, AlertTriangle } from 'lucide-react';
 import { useData } from '../context/DataContext';
 
 /**
