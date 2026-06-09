@@ -50,7 +50,7 @@ const HorizontalBarChart = ({ data, suffix = '', valueLabel, defaultColor = 'var
   const height = Math.max(160, data.length * 44);
   return (
     <ResponsiveContainer width="100%" height={height}>
-      <BarChart data={data} layout="vertical" margin={{ top: 4, right: 36, bottom: 4, left: 8 }}>
+      <BarChart data={data} layout="vertical" margin={{ top: 4, right: 56, bottom: 4, left: 8 }}>
         <XAxis type="number" hide />
         <YAxis
           type="category"
