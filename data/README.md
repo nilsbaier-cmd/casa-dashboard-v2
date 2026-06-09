@@ -1,30 +1,41 @@
- # Data Files
+# Data files — local only, never commit
 
-  Upload your INAD and BAZL Excel files here via GitHub.com:
+> ⚠️ **The raw INAD/BAZL spreadsheets contain personal data and must NEVER be
+> committed to this (public) repository.** They are git-ignored on purpose. Only
+> the aggregated, anonymous JSON in [`../public/analysis/`](../public/analysis/)
+> is published.
 
-  1. Go to this folder on GitHub.com
-  2. Click "Add file" > "Upload files"
-  3. Drag and drop your Excel files:
-     - `INAD-Tabelle.xlsx` (or `.xlsm`)
-     - `BAZL-Daten.xlsx`
-  4. Click "Commit changes"
+## How the data flows
 
-  The analysis will run automatically within a few minutes, and the dashboard will update with the new data.
+```
+data/INAD_*.xlsm   ─┐
+data/BAZL-*.xlsx   ─┤──>  npm run analyze  ──>  public/analysis/*.json  ──> committed & deployed
+(local only)       ─┘     (scripts/generate_analysis.py)                    (aggregate only)
+```
 
-  ## File Requirements
+The dashboard never reads the raw spreadsheets — it reads the pre-generated
+aggregate JSON. The aggregation keeps only airline codes, airport codes, counts,
+densities and priority labels; no personal fields are carried over.
 
-  ### INAD-Tabelle
-  Must contain columns:
-  - `Fluggesellschaft` - Airline code
-  - `Abflugort` - Last stop / Origin airport code
-  - `Jahr` - Year
-  - `Monat` - Month (1-12)
-  - `Verweigerungsgründe` - Refusal code (optional, for filtering)
+## Updating the dashboard with new data
 
-  ### BAZL-Daten
-  Must contain columns:
-  - `Fluggesellschaft` - Airline code
-  - `Abflugort` - Airport code
-  - `PAX` - Passenger count
-  - `Jahr` - Year
-  - `Monat` - Month (1-12)
+1. Put the two source files in this folder (they stay on your machine only):
+   - `INAD-Tabelle.xlsx` / `.xlsm` — columns `Fluggesellschaft`, `Abflugort`,
+     `Jahr`, `Monat` (`Verweigerungsgründe` optional).
+   - `BAZL-Daten.xlsx` — columns `Fluggesellschaft`, `Abflugort`, `PAX`, `Jahr`,
+     `Monat`.
+2. Generate the aggregate JSON locally:
+   ```bash
+   npm run analyze
+   ```
+   (Needs Python 3.9+ and `pip install -r backend/requirements.txt`.)
+3. Commit **only** the regenerated `public/analysis/*.json`:
+   ```bash
+   git add public/analysis
+   git commit -m "data: refresh analysis (<period>)"
+   git push
+   ```
+
+Pushing to `main` triggers the build-and-deploy workflow. A guardrail job
+**fails the build** if a spreadsheet is ever staged under `data/`, so a slip
+can't silently re-expose personal data.
