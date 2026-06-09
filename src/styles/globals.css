@@ -77,6 +77,63 @@
   --header-height: 64px;
 }
 
+/* ============================================
+   DARK THEME
+   Overrides only the surface/text/border tokens; the semantic priority colors
+   stay the same so red/amber/green keep their meaning.
+   ============================================ */
+[data-theme="dark"] {
+  --color-primary: #2DD4BF;
+  --color-primary-light: #5EEAD4;
+  --color-primary-lighter: #134E4A;
+  --color-primary-dark: #14B8A6;
+
+  --color-danger-light: #3F1D1D;
+  --color-warning-light: #3A2A12;
+  --color-success-light: #15321F;
+  --color-muted-light: #1E293B;
+
+  --bg-primary: #0B1120;
+  --bg-secondary: #111827;
+  --bg-tertiary: #1E293B;
+  --bg-card: #111827;
+  --bg-sidebar: #0F172A;
+  --bg-hover: #1E293B;
+
+  --text-primary: #F1F5F9;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
+
+  --border-color: #1F2A3C;
+  --border-light: #16202E;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .lang-btn.active,
+[data-theme="dark"] .btn-secondary {
+  background: var(--bg-tertiary);
+}
+
+/* Honor the OS "reduce motion" setting. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Visible keyboard focus everywhere. */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
 /* Reset & Base */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -247,6 +304,12 @@ body {
   cursor: pointer;
   margin-bottom: 2px;
   font-size: 0.9rem;
+  /* nav items are <button>s — reset native chrome and stretch full width */
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  text-align: left;
 }
 
 .nav-item:hover {
@@ -981,19 +1044,121 @@ tr:last-child td {
 .stats-grid > *:nth-child(6) { animation: fadeIn 0.4s ease 0.3s forwards; opacity: 0; }
 
 /* ============================================
+   MOBILE TOP BAR + SIDEBAR OVERLAY
+   ============================================ */
+
+/* Top bar with hamburger — only shown on small screens. */
+.mobile-topbar {
+  display: none;
+  align-items: center;
+  gap: var(--spacing-md);
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  margin: calc(-1 * var(--spacing-md)) calc(-1 * var(--spacing-md)) var(--spacing-md);
+}
+
+.icon-button {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.icon-button:hover {
+  background: var(--bg-hover);
+  border-color: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.mobile-topbar-title {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Backdrop behind the open sidebar on mobile. */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+}
+
+/* Theme toggle row in the sidebar footer. */
+.sidebar-footer-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-lg) var(--spacing-md);
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-xs) var(--spacing-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  border-radius: var(--radius-md);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.theme-toggle:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary-light);
+}
+
+.sidebar-close {
+  display: none;
+}
+
+/* ============================================
    RESPONSIVE
    ============================================ */
 
 @media (max-width: 1024px) {
   .sidebar {
     transform: translateX(-100%);
+    transition: transform var(--transition-normal);
   }
-  
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .sidebar-close {
+    display: inline-flex;
+  }
+
   .main-content {
     margin-left: 0;
     max-width: 100%;
   }
-  
+
+  .mobile-topbar {
+    display: flex;
+  }
+
+  .sidebar-overlay.open {
+    display: block;
+  }
+
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1003,11 +1168,11 @@ tr:last-child td {
   .main-content {
     padding: var(--spacing-md);
   }
-  
+
   .stats-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .globe-container {
     height: 300px;
   }

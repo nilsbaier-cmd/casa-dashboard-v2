@@ -4,7 +4,13 @@ const translations = {
     // Page
     pageTitle: 'INAD Analysis Dashboard',
     pageSubtitle: 'How can I help you today?',
-    
+
+    // UI chrome
+    openMenu: 'Open menu',
+    closeMenu: 'Close menu',
+    darkMode: 'Dark',
+    lightMode: 'Light',
+
     // Stats
     totalInad: 'Total INAD',
     highPriority: 'High Priority',
@@ -88,6 +94,12 @@ const translations = {
     // Page
     pageTitle: 'INAD Analyse-Dashboard',
     pageSubtitle: 'Wie kann ich Ihnen heute helfen?',
+
+    // UI chrome
+    openMenu: 'Menü öffnen',
+    closeMenu: 'Menü schliessen',
+    darkMode: 'Dunkel',
+    lightMode: 'Hell',
     
     // Stats
     totalInad: 'Total INAD',
@@ -172,6 +184,12 @@ const translations = {
     // Page
     pageTitle: 'Tableau de bord d\'analyse INAD',
     pageSubtitle: 'Comment puis-je vous aider aujourd\'hui?',
+
+    // UI chrome
+    openMenu: 'Ouvrir le menu',
+    closeMenu: 'Fermer le menu',
+    darkMode: 'Sombre',
+    lightMode: 'Clair',
     
     // Stats
     totalInad: 'Total INAD',
