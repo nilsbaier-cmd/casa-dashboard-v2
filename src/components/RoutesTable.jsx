@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Search, Download, ChevronDown, ChevronUp } from 'lucide-react';
+import { exportCsv } from '../utils/csv';
 
 const RoutesTable = ({ routes = [], title, translations = {} }) => {
   const [sortField, setSortField] = useState('inad');
@@ -88,27 +89,17 @@ const RoutesTable = ({ routes = [], title, translations = {} }) => {
 
   const handleExport = () => {
     const headers = ['Airline', 'Last Stop', 'Origin', 'INAD', 'PAX', 'Density', 'Confidence', 'Priority'];
-    const csvContent = [
-      headers.join(','),
-      ...processedRoutes.map(r => [
-        r.airline,
-        r.lastStop,
-        r.originCity || '',
-        r.inad,
-        r.pax || '',
-        r.density?.toFixed(4) || '',
-        r.confidence || '',
-        r.priority
-      ].join(','))
-    ].join('\n');
-
-    const blob = new Blob([csvContent], { type: 'text/csv' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `routes-export-${new Date().toISOString().split('T')[0]}.csv`;
-    link.click();
-    URL.revokeObjectURL(url);
+    const rows = processedRoutes.map(r => [
+      r.airline,
+      r.lastStop,
+      r.originCity || '',
+      r.inad,
+      r.pax || '',
+      r.density?.toFixed(4) || '',
+      r.confidence || '',
+      r.priority,
+    ]);
+    exportCsv('routes-export', headers, rows);
   };
 
   return (

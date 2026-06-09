@@ -2,6 +2,12 @@
 
 A modern React + FastAPI dashboard for INAD (Inadmissible Passengers) analysis with a clean, professional design.
 
+> **Data handling:** the live dashboard is a static site that serves only
+> pre-aggregated, anonymous JSON. Raw INAD/BAZL spreadsheets contain personal
+> data and must never be committed — they stay local and are git-ignored. See
+> [SECURITY.md](SECURITY.md) and [data/README.md](data/README.md). To refresh the
+> data, run `npm run analyze` locally and commit only `public/analysis/*.json`.
+
 ## Features
 
 ### Analysis Capabilities
@@ -64,10 +70,8 @@ The API will be available at http://localhost:8000
 
 ```bash
 # From project root
-cd casa-react-v2
-
 # Install dependencies
-npm install
+npm install --legacy-peer-deps
 
 # Start development server
 npm start

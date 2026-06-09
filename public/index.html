@@ -5,6 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#F5F3FF" />
     <meta name="description" content="CASA INAD Analysis Dashboard - Enhanced Analysis with Priority Classification" />
+
+    <!--
+      Security headers. GitHub Pages cannot set real HTTP response headers, so we
+      use the <meta> equivalents the browser honours. The CSP is scoped to exactly
+      what the app needs:
+        - script/style: self + inline (CRA injects an inline runtime + many
+          components use inline styles; recharts also emits inline styles).
+        - img/connect: self + data/blob (html2canvas, CSV/PNG export) and
+          unpkg.com (3D globe textures: earth, topology, night-sky).
+        - font: self + Google Fonts; object-src none + base-uri self harden
+          against injected plugins/base-tag hijacking.
+      Note: frame-ancestors / X-Frame-Options only work as real HTTP headers, so
+      they are intentionally omitted here. Clickjacking risk is low for a no-auth,
+      read-only dashboard; see SECURITY.md. If the globe textures are later
+      self-hosted, drop unpkg.com from img-src/connect-src.
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
+        default-src 'self';
+        base-uri 'self';
+        object-src 'none';
+        form-action 'self';
+        img-src 'self' data: blob: https://unpkg.com https://*.unpkg.com;
+        connect-src 'self' https://unpkg.com https://*.unpkg.com;
+        script-src 'self' 'unsafe-inline';
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+        font-src 'self' https://fonts.gstatic.com;
+        worker-src 'self' blob:;
+        upgrade-insecure-requests
+      "
+    />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
