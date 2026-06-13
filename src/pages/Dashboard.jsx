@@ -5,7 +5,12 @@ import ChartContainer from '../components/ChartContainer';
 import HistoricTrends from '../components/HistoricTrends';
 import { PrioritySummaryCards } from '../components/StatCard';
 import { useData } from '../context/DataContext';
-import { sampleRoutes, summaryStats as defaultSummaryStats, systemicCases as defaultSystemicCases, priorityDistributionData as defaultPriorityData, regionData as defaultRegionData } from '../data/sampleData';
+import { sampleRoutes, summaryStats as defaultSummaryStats, systemicCases as defaultSystemicCases, priorityDistributionData as defaultPriorityData } from '../data/sampleData';
+import { exportCsv } from '../utils/csv';
+import { aggregateByRegion } from '../utils/regions';
+import {
+  BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, LabelList,
+} from 'recharts';
 import {
   TrendingUp,
   TrendingDown,
@@ -15,92 +20,107 @@ import {
   RefreshCw
 } from 'lucide-react';
 
-// Simple Bar Chart Component
-const SimpleBarChart = ({ data, labelKey, valueKey, colorKey }) => {
-  const maxValue = Math.max(...data.map(d => d[valueKey]));
-  
+// Shared tooltip styled with theme tokens (works in light + dark).
+const ChartTooltip = ({ active, payload, label, suffix = '', valueLabel }) => {
+  if (!active || !payload || !payload.length) return null;
+  const value = payload[0].value;
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-      {data.map((item, i) => (
-        <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <div style={{ width: '100px', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
-            {item[labelKey]}
-          </div>
-          <div style={{ flex: 1, height: '24px', background: 'var(--bg-tertiary)', borderRadius: '4px', overflow: 'hidden' }}>
-            <div 
-              style={{ 
-                height: '100%', 
-                width: `${(item[valueKey] / maxValue) * 100}%`,
-                background: item[colorKey] || 'var(--color-primary)',
-                borderRadius: '4px',
-                transition: 'width 0.5s ease'
-              }} 
-            />
-          </div>
-          <div style={{ width: '40px', textAlign: 'right', fontWeight: 600, fontSize: '0.875rem' }}>
-            {item[valueKey]}
-          </div>
-        </div>
-      ))}
+    <div style={{
+      background: 'var(--bg-card)',
+      border: '1px solid var(--border-color)',
+      borderRadius: '8px',
+      padding: '8px 12px',
+      boxShadow: 'var(--shadow-md)',
+      fontSize: '0.8rem',
+      color: 'var(--text-primary)',
+    }}>
+      <div style={{ fontWeight: 600, marginBottom: 2 }}>{label}</div>
+      <div style={{ color: 'var(--text-secondary)' }}>
+        {valueLabel || 'INAD'}: <strong>{value}{suffix}</strong>
+      </div>
     </div>
   );
 };
 
+// Responsive horizontal bar chart (recharts). `data` items: { label, value, color? }
+const HorizontalBarChart = ({ data, suffix = '', valueLabel, defaultColor = 'var(--color-primary)', decimals = 0 }) => {
+  if (!data || data.length === 0) {
+    return <div style={{ padding: '32px', textAlign: 'center', color: 'var(--text-muted)' }}>—</div>;
+  }
+  const height = Math.max(160, data.length * 44);
+  return (
+    <ResponsiveContainer width="100%" height={height}>
+      <BarChart data={data} layout="vertical" margin={{ top: 4, right: 56, bottom: 4, left: 8 }}>
+        <XAxis type="number" hide />
+        <YAxis
+          type="category"
+          dataKey="label"
+          width={120}
+          tick={{ fill: 'var(--text-secondary)', fontSize: 12 }}
+          axisLine={false}
+          tickLine={false}
+        />
+        <Tooltip
+          cursor={{ fill: 'var(--bg-hover)' }}
+          content={<ChartTooltip suffix={suffix} valueLabel={valueLabel} />}
+        />
+        <Bar dataKey="value" radius={[4, 4, 4, 4]} isAnimationActive={true} animationDuration={500}>
+          {data.map((entry, i) => (
+            <Cell key={i} fill={entry.color || defaultColor} />
+          ))}
+          <LabelList
+            dataKey="value"
+            position="right"
+            formatter={(v) => `${decimals ? Number(v).toFixed(decimals) : v}${suffix}`}
+            style={{ fill: 'var(--text-primary)', fontSize: 12, fontWeight: 600 }}
+          />
+        </Bar>
+      </BarChart>
+    </ResponsiveContainer>
+  );
+};
+
 // Overview Tab
-const OverviewTab = ({ t, routes, summaryStats, priorityDistributionData }) => (
-  <div>
-    <PrioritySummaryCards data={summaryStats} translations={t} />
+const OverviewTab = ({ t, routes, summaryStats, priorityDistributionData }) => {
+  const priorityData = priorityDistributionData.map(d => ({
+    label: d.name, value: d.value, color: d.color,
+  }));
 
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '20px', marginTop: '24px' }}>
-      <ChartContainer title={t.priorityDistribution} icon="📊" downloadFileName="priority-distribution" translations={t}>
-        <SimpleBarChart
-          data={priorityDistributionData}
-          labelKey="name"
-          valueKey="value"
-          colorKey="color"
-        />
-      </ChartContainer>
+  const topRoutesData = routes
+    .filter(r => r.priority !== 'CLEAR' && r.density)
+    .sort((a, b) => (b.density || 0) - (a.density || 0))
+    .slice(0, 5)
+    .map(r => ({
+      label: `${r.airline} → ${r.lastStop}`,
+      value: Number(r.density.toFixed(4)),
+      color: r.priority === 'HIGH_PRIORITY' ? 'var(--color-danger)' : 'var(--color-warning)',
+    }));
 
-      <ChartContainer title={t.topRoutesByDensity} icon="📈" downloadFileName="top-routes-density" translations={t}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-          {routes
-            .filter(r => r.priority !== 'CLEAR' && r.density)
-            .sort((a, b) => (b.density || 0) - (a.density || 0))
-            .slice(0, 5)
-            .map((route, i) => (
-              <div key={i} style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                padding: '12px 16px',
-                background: 'var(--bg-tertiary)',
-                borderRadius: '8px'
-              }}>
-                <span style={{ fontWeight: 600 }}>{route.airline} → {route.lastStop}</span>
-                <span style={{
-                  color: route.priority === 'HIGH_PRIORITY' ? 'var(--color-danger)' : 'var(--color-warning)',
-                  fontWeight: 600
-                }}>
-                  {route.density?.toFixed(4) || 'N/A'}‰
-                </span>
-              </div>
-            ))
-          }
-        </div>
-      </ChartContainer>
+  // Derive regions from the actual loaded routes (was hard-coded sample data).
+  const regionData = aggregateByRegion(routes).map(d => ({ label: d.region, value: d.inad }));
+
+  return (
+    <div>
+      <PrioritySummaryCards data={summaryStats} translations={t} />
+
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '20px', marginTop: '24px' }}>
+        <ChartContainer title={t.priorityDistribution} icon="📊" downloadFileName="priority-distribution" translations={t}>
+          <HorizontalBarChart data={priorityData} valueLabel={t.routes || 'Routes'} />
+        </ChartContainer>
+
+        <ChartContainer title={t.topRoutesByDensity} icon="📈" downloadFileName="top-routes-density" translations={t}>
+          <HorizontalBarChart data={topRoutesData} suffix="‰" decimals={4} valueLabel={t.density || 'Density'} />
+        </ChartContainer>
+      </div>
+
+      <div style={{ marginTop: '24px' }}>
+        <ChartContainer title={t.inadByRegion} icon="🌍" downloadFileName="inad-by-region" translations={t}>
+          <HorizontalBarChart data={regionData} valueLabel={t.totalInad || 'INAD'} />
+        </ChartContainer>
+      </div>
     </div>
-
-    <div style={{ marginTop: '24px' }}>
-      <ChartContainer title={t.inadByRegion} icon="🌍" downloadFileName="inad-by-region" translations={t}>
-        <SimpleBarChart
-          data={defaultRegionData}
-          labelKey="region"
-          valueKey="inad"
-        />
-      </ChartContainer>
-    </div>
-  </div>
-);
+  );
+};
 
 // Globe Tab
 const GlobeTab = ({ t, routes }) => (
@@ -124,6 +144,14 @@ const AirlinesTab = ({ t, routes, summaryStats }) => {
 
   const airlines = Object.values(airlineStats).sort((a, b) => b.inad - a.inad);
 
+  const handleExportAirlines = () => {
+    exportCsv(
+      'airlines-overview',
+      ['Airline', 'Total INAD', 'Routes', 'Worst Priority'],
+      airlines.map(a => [a.airline, a.inad, a.routes, a.worstPriority])
+    );
+  };
+
   return (
     <div>
       <PrioritySummaryCards data={summaryStats} translations={t} />
@@ -131,7 +159,7 @@ const AirlinesTab = ({ t, routes, summaryStats }) => {
       <div className="table-container" style={{ marginTop: '24px' }}>
         <div className="table-header">
           <h3 className="table-title">{t.airlinesOverview}</h3>
-          <button className="btn btn-primary">
+          <button className="btn btn-primary" onClick={handleExportAirlines}>
             <Download size={16} />
             {t.exportCsv}
           </button>
@@ -362,6 +390,20 @@ const LegalTab = ({ t, routes, analysisData }) => {
   const highPriorityRoutes = routes.filter(r => r.priority === 'HIGH_PRIORITY');
   const watchListRoutes = routes.filter(r => r.priority === 'WATCH_LIST');
 
+  const exportLegalRoutes = (fileName, routeList) => {
+    exportCsv(
+      fileName,
+      ['Airline', 'Last Stop', 'INAD', 'Density', 'Confidence'],
+      routeList.map(r => [
+        r.airline,
+        r.lastStop,
+        r.inad,
+        r.density?.toFixed(4) || '',
+        r.confidence || '',
+      ])
+    );
+  };
+
   return (
     <div>
       {/* Analysis Parameters */}
@@ -399,7 +441,11 @@ const LegalTab = ({ t, routes, analysisData }) => {
       <div className="card" style={{ marginBottom: '24px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
           <h3>🔴 {t.highPriorityRoutes} ({highPriorityRoutes.length})</h3>
-          <button className="btn btn-secondary">
+          <button
+            className="btn btn-secondary"
+            onClick={() => exportLegalRoutes('high-priority-routes', highPriorityRoutes)}
+            disabled={highPriorityRoutes.length === 0}
+          >
             <Download size={16} />
             {t.export}
           </button>
@@ -439,7 +485,11 @@ const LegalTab = ({ t, routes, analysisData }) => {
       <div className="card">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
           <h3>🟠 {t.watchListRoutes} ({watchListRoutes.length})</h3>
-          <button className="btn btn-secondary">
+          <button
+            className="btn btn-secondary"
+            onClick={() => exportLegalRoutes('watch-list-routes', watchListRoutes)}
+            disabled={watchListRoutes.length === 0}
+          >
             <Download size={16} />
             {t.export}
           </button>

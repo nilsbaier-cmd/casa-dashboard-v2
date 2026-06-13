@@ -1,6 +1,11 @@
 """
 CASA Dashboard Backend API
-FastAPI application for INAD analysis
+FastAPI application for INAD analysis.
+
+LOCAL DEVELOPMENT ONLY. This service reads the raw INAD/BAZL spreadsheets, which
+contain personal data. It is never deployed: production is a static site that
+serves only the pre-generated aggregate JSON in public/analysis/. Do not expose
+this API to the public internet.
 """
 
 from fastapi import FastAPI, HTTPException, UploadFile, File, Query
@@ -11,6 +16,24 @@ from datetime import datetime
 import tempfile
 import os
 import shutil
+
+# Directory the API is allowed to read "server files" from. Defaults to the
+# repo's data/ folder; override with CASA_DATA_DIR. Anything outside is rejected,
+# which prevents the endpoint from being used to read arbitrary files on disk.
+ALLOWED_DATA_DIR = os.path.realpath(
+    os.getenv("CASA_DATA_DIR", os.path.join(os.path.dirname(__file__), "..", "data"))
+)
+
+# CORS origins for local dev. Override with CASA_CORS_ORIGINS (comma-separated).
+# We do NOT use "*" together with credentials — that combination is invalid and
+# would defeat the purpose of an allowlist.
+CORS_ORIGINS = [
+    o.strip()
+    for o in os.getenv(
+        "CASA_CORS_ORIGINS", "http://localhost:3000,http://localhost:5000"
+    ).split(",")
+    if o.strip()
+]
 
 from inad_analysis import (
     AnalysisConfig,
@@ -26,12 +49,12 @@ app = FastAPI(
     version="2.0.0"
 )
 
-# Enable CORS for React frontend
+# Enable CORS for the local React dev server only (no wildcard, no credentials).
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:5000", "*"],
-    allow_credentials=True,
-    allow_methods=["*"],
+    allow_origins=CORS_ORIGINS,
+    allow_credentials=False,
+    allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )
 
@@ -50,6 +73,19 @@ class AppState:
             self.temp_dir = None
 
 state = AppState()
+
+
+def _resolve_within_data_dir(path: str) -> str:
+    """Resolve `path` (absolute or relative to ALLOWED_DATA_DIR) and ensure it
+    stays inside ALLOWED_DATA_DIR. Raises 400 on traversal attempts."""
+    candidate = path if os.path.isabs(path) else os.path.join(ALLOWED_DATA_DIR, path)
+    resolved = os.path.realpath(candidate)
+    if resolved != ALLOWED_DATA_DIR and not resolved.startswith(ALLOWED_DATA_DIR + os.sep):
+        raise HTTPException(
+            status_code=400,
+            detail="Path is outside the allowed data directory",
+        )
+    return resolved
 
 
 # Pydantic models for API
@@ -159,16 +195,20 @@ async def load_server_files(
     inad_path: str = Query(..., description="Path to INAD-Tabelle file"),
     bazl_path: str = Query(..., description="Path to BAZL-Daten file")
 ):
-    """Load data files from server paths"""
+    """Load data files from server paths (restricted to ALLOWED_DATA_DIR)."""
     try:
-        # Validate paths exist
-        if not os.path.exists(inad_path):
-            raise HTTPException(status_code=404, detail=f"INAD file not found: {inad_path}")
-        if not os.path.exists(bazl_path):
-            raise HTTPException(status_code=404, detail=f"BAZL file not found: {bazl_path}")
+        # Resolve and confine both paths to the allowlisted data directory so this
+        # endpoint cannot be used to read arbitrary files (path traversal).
+        safe_inad = _resolve_within_data_dir(inad_path)
+        safe_bazl = _resolve_within_data_dir(bazl_path)
 
-        state.inad_path = inad_path
-        state.bazl_path = bazl_path
+        if not os.path.isfile(safe_inad):
+            raise HTTPException(status_code=404, detail="INAD file not found in data directory")
+        if not os.path.isfile(safe_bazl):
+            raise HTTPException(status_code=404, detail="BAZL file not found in data directory")
+
+        state.inad_path = safe_inad
+        state.bazl_path = safe_bazl
 
         # Clear cache
         state.analysis_cache = {}

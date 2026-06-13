@@ -1,0 +1,68 @@
+name: Build and Deploy
+
+# The analysis JSON (public/analysis/*.json) is generated LOCALLY and committed.
+# CI never touches raw data — it only builds the static site and deploys it.
+# Raw INAD/BAZL spreadsheets must never reach this repo (see data-guard below).
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'public/**'
+      - 'src/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/deploy.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write # Needed to push to gh-pages
+
+jobs:
+  # Fail fast if anyone ever commits raw source spreadsheets under data/.
+  # This is the structural guard that keeps personal data out of the repo.
+  data-guard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Reject raw data files
+        run: |
+          matches=$(git ls-files 'data/**' | grep -iE '\.(xlsx|xlsm|xls|csv)$' || true)
+          if [ -n "$matches" ]; then
+            echo "::error::Raw data files are committed under data/. These may contain"
+            echo "::error::personal data and must never be in this repo. Remove them and"
+            echo "::error::commit only aggregate JSON in public/analysis/. Offending files:"
+            echo "$matches"
+            exit 1
+          fi
+          echo "OK: no raw spreadsheets tracked under data/."
+
+  build-and-deploy:
+    needs: data-guard
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install frontend dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Build frontend
+        run: npm run build
+        env:
+          CI: false # treat lint warnings as warnings, not errors
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build

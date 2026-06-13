@@ -8,7 +8,10 @@ import {
   FileText,
   Settings,
   HelpCircle,
-  TrendingUp
+  TrendingUp,
+  Moon,
+  Sun,
+  X
 } from 'lucide-react';
 
 // Translations for sidebar
@@ -78,11 +81,16 @@ const Sidebar = ({
   setSemester,
   semesters = [],
   priorityCount = 0,
-  systemicCount = 0
+  systemicCount = 0,
+  isOpen = false,
+  onClose = () => {},
+  theme = 'light',
+  onToggleTheme = () => {}
 }) => {
   // Use provided semesters or fallback to defaults
   const semesterOptions = semesters.length > 0 ? semesters : defaultSemesters;
   const t = translations[language] || translations.en;
+  const isDark = theme === 'dark';
 
   const navItems = [
     { id: 'globe', icon: Globe, label: t.globe },
@@ -95,9 +103,9 @@ const Sidebar = ({
   ];
 
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
       {/* Logo */}
-      <div className="sidebar-header">
+      <div className="sidebar-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div className="sidebar-logo">
           <div className="sidebar-logo-icon">✈️</div>
           <div>
@@ -105,6 +113,13 @@ const Sidebar = ({
             <div className="sidebar-logo-subtitle">Reporting Dashboard</div>
           </div>
         </div>
+        <button
+          className="icon-button sidebar-close"
+          onClick={onClose}
+          aria-label={t.closeMenu || 'Close menu'}
+        >
+          <X size={18} />
+        </button>
       </div>
 
       {/* Semester Selector */}
@@ -128,10 +143,12 @@ const Sidebar = ({
         <div className="nav-section">
           <div className="nav-section-title">{t.analysis}</div>
           {navItems.map((item) => (
-            <div
+            <button
               key={item.id}
+              type="button"
               className={`nav-item ${activeTab === item.id ? 'active' : ''}`}
               onClick={() => setActiveTab(item.id)}
+              aria-current={activeTab === item.id ? 'page' : undefined}
             >
               <div className="nav-item-icon">
                 <item.icon size={18} />
@@ -142,31 +159,35 @@ const Sidebar = ({
                   {item.badge.count}
                 </span>
               )}
-            </div>
+            </button>
           ))}
         </div>
 
         {/* Settings Section */}
         <div className="nav-section">
           <div className="nav-section-title">{t.settings}</div>
-          <div
+          <button
+            type="button"
             className={`nav-item ${activeTab === 'config' ? 'active' : ''}`}
             onClick={() => setActiveTab('config')}
+            aria-current={activeTab === 'config' ? 'page' : undefined}
           >
             <div className="nav-item-icon">
               <Settings size={18} />
             </div>
             <span>{t.configuration}</span>
-          </div>
-          <div
+          </button>
+          <button
+            type="button"
             className={`nav-item ${activeTab === 'help' ? 'active' : ''}`}
             onClick={() => setActiveTab('help')}
+            aria-current={activeTab === 'help' ? 'page' : undefined}
           >
             <div className="nav-item-icon">
               <HelpCircle size={18} />
             </div>
             <span>{t.help}</span>
-          </div>
+          </button>
         </div>
       </nav>
 
@@ -174,25 +195,32 @@ const Sidebar = ({
       <div className="language-selector">
         <div className="semester-label">{t.language}</div>
         <div className="language-buttons">
-          <button 
-            className={`lang-btn ${language === 'en' ? 'active' : ''}`}
-            onClick={() => setLanguage('en')}
-          >
-            EN
-          </button>
-          <button 
-            className={`lang-btn ${language === 'de' ? 'active' : ''}`}
-            onClick={() => setLanguage('de')}
-          >
-            DE
-          </button>
-          <button 
-            className={`lang-btn ${language === 'fr' ? 'active' : ''}`}
-            onClick={() => setLanguage('fr')}
-          >
-            FR
-          </button>
+          {['en', 'de', 'fr'].map((lng) => (
+            <button
+              key={lng}
+              type="button"
+              className={`lang-btn ${language === lng ? 'active' : ''}`}
+              onClick={() => setLanguage(lng)}
+              aria-pressed={language === lng}
+            >
+              {lng.toUpperCase()}
+            </button>
+          ))}
         </div>
+      </div>
+
+      {/* Theme toggle */}
+      <div className="sidebar-footer-actions">
+        <button
+          type="button"
+          className="theme-toggle"
+          onClick={onToggleTheme}
+          aria-pressed={isDark}
+          aria-label={isDark ? (t.lightMode || 'Switch to light mode') : (t.darkMode || 'Switch to dark mode')}
+        >
+          {isDark ? <Sun size={16} /> : <Moon size={16} />}
+          <span>{isDark ? (t.lightMode || 'Light') : (t.darkMode || 'Dark')}</span>
+        </button>
       </div>
     </aside>
   );

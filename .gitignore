@@ -1,6 +1,12 @@
 # Dependencies
 node_modules/
 
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
 # Build output
 build/
 
@@ -25,3 +31,12 @@ yarn-error.log*
 # OS
 .DS_Store
 Thumbs.db
+
+# Raw source data — NEVER commit. These spreadsheets contain personal data and
+# must stay local only. Analysis is generated locally (`npm run analyze`); only
+# the aggregate JSON in public/analysis/ is committed. See data/README.md.
+data/*.xlsx
+data/*.xlsm
+data/*.xls
+data/*.csv
+!data/.gitkeep
