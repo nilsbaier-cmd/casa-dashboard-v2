@@ -51,19 +51,6 @@
       "originCountry": "CA"
     },
     {
-      "airline": "QR",
-      "lastStop": "DOH",
-      "inad": 14,
-      "pax": 0,
-      "density": null,
-      "confidence": 0,
-      "priority": "UNRELIABLE",
-      "originLat": 25.26059,
-      "originLng": 51.61377,
-      "originCity": "Doha",
-      "originCountry": "QA"
-    },
-    {
       "airline": "GM",
       "lastStop": "BEY",
       "inad": 14,
@@ -75,6 +62,19 @@
       "originLng": 35.4884,
       "originCity": "Beirut",
       "originCountry": "LB"
+    },
+    {
+      "airline": "QR",
+      "lastStop": "DOH",
+      "inad": 14,
+      "pax": 0,
+      "density": null,
+      "confidence": 0,
+      "priority": "UNRELIABLE",
+      "originLat": 25.26059,
+      "originLng": 51.61377,
+      "originCity": "Doha",
+      "originCountry": "QA"
     },
     {
       "airline": "BA",
@@ -116,19 +116,6 @@
       "originCountry": "BR"
     },
     {
-      "airline": "UA",
-      "lastStop": "ORD",
-      "inad": 8,
-      "pax": 0,
-      "density": null,
-      "confidence": 0,
-      "priority": "UNRELIABLE",
-      "originLat": 41.97694,
-      "originLng": -87.90815,
-      "originCity": "Chicago",
-      "originCountry": "US"
-    },
-    {
       "airline": "LX",
       "lastStop": "TLV",
       "inad": 8,
@@ -142,17 +129,17 @@
       "originCountry": "IL"
     },
     {
-      "airline": "AC",
-      "lastStop": "YYZ",
-      "inad": 7,
+      "airline": "UA",
+      "lastStop": "ORD",
+      "inad": 8,
       "pax": 0,
       "density": null,
       "confidence": 0,
       "priority": "UNRELIABLE",
-      "originLat": 43.6772,
-      "originLng": -79.6306,
-      "originCity": "Mississauga",
-      "originCountry": "CA"
+      "originLat": 41.97694,
+      "originLng": -87.90815,
+      "originCity": "Chicago",
+      "originCountry": "US"
     },
     {
       "airline": "LX",
@@ -181,30 +168,30 @@
       "originCountry": "US"
     },
     {
-      "airline": "JU",
-      "lastStop": "BEG",
-      "inad": 6,
+      "airline": "AC",
+      "lastStop": "YYZ",
+      "inad": 7,
       "pax": 0,
       "density": null,
       "confidence": 0,
       "priority": "UNRELIABLE",
-      "originLat": 44.8184,
-      "originLng": 20.3091,
-      "originCity": "Belgrad",
-      "originCountry": "RS"
+      "originLat": 43.6772,
+      "originLng": -79.6306,
+      "originCity": "Mississauga",
+      "originCountry": "CA"
     },
     {
-      "airline": "LX",
-      "lastStop": "DUB",
+      "airline": "PC",
+      "lastStop": "SAW",
       "inad": 6,
       "pax": 0,
       "density": null,
       "confidence": 0,
       "priority": "UNRELIABLE",
-      "originLat": 53.4213,
-      "originLng": -6.27007,
-      "originCity": "Dublin",
-      "originCountry": "IE"
+      "originLat": 40.8986,
+      "originLng": 29.3092,
+      "originCity": "Istanbul",
+      "originCountry": "TR"
     },
     {
       "airline": "SV",
@@ -220,17 +207,30 @@
       "originCountry": "SA"
     },
     {
-      "airline": "PC",
-      "lastStop": "SAW",
+      "airline": "LX",
+      "lastStop": "DUB",
       "inad": 6,
       "pax": 0,
       "density": null,
       "confidence": 0,
       "priority": "UNRELIABLE",
-      "originLat": 40.8986,
-      "originLng": 29.3092,
-      "originCity": "Istanbul",
-      "originCountry": "TR"
+      "originLat": 53.4213,
+      "originLng": -6.27007,
+      "originCity": "Dublin",
+      "originCountry": "IE"
+    },
+    {
+      "airline": "JU",
+      "lastStop": "BEG",
+      "inad": 6,
+      "pax": 0,
+      "density": null,
+      "confidence": 0,
+      "priority": "UNRELIABLE",
+      "originLat": 44.8184,
+      "originLng": 20.3091,
+      "originCity": "Belgrad",
+      "originCountry": "RS"
     }
   ],
   "airlines": [
@@ -279,11 +279,11 @@
       "inadCount": 6
     },
     {
-      "airline": "SV",
+      "airline": "PC",
       "inadCount": 6
     },
     {
-      "airline": "PC",
+      "airline": "SV",
       "inadCount": 6
     }
   ],
@@ -304,13 +304,13 @@
       "inadCount": 20
     },
     {
-      "airline": "QR",
-      "lastStop": "DOH",
+      "airline": "GM",
+      "lastStop": "BEY",
       "inadCount": 14
     },
     {
-      "airline": "GM",
-      "lastStop": "BEY",
+      "airline": "QR",
+      "lastStop": "DOH",
       "inadCount": 14
     },
     {
@@ -329,19 +329,14 @@
       "inadCount": 9
     },
     {
-      "airline": "UA",
-      "lastStop": "ORD",
-      "inadCount": 8
-    },
-    {
       "airline": "LX",
       "lastStop": "TLV",
       "inadCount": 8
     },
     {
-      "airline": "AC",
-      "lastStop": "YYZ",
-      "inadCount": 7
+      "airline": "UA",
+      "lastStop": "ORD",
+      "inadCount": 8
     },
     {
       "airline": "LX",
@@ -354,13 +349,13 @@
       "inadCount": 7
     },
     {
-      "airline": "JU",
-      "lastStop": "BEG",
-      "inadCount": 6
+      "airline": "AC",
+      "lastStop": "YYZ",
+      "inadCount": 7
     },
     {
-      "airline": "LX",
-      "lastStop": "DUB",
+      "airline": "PC",
+      "lastStop": "SAW",
       "inadCount": 6
     },
     {
@@ -369,8 +364,13 @@
       "inadCount": 6
     },
     {
-      "airline": "PC",
-      "lastStop": "SAW",
+      "airline": "LX",
+      "lastStop": "DUB",
+      "inadCount": 6
+    },
+    {
+      "airline": "JU",
+      "lastStop": "BEG",
       "inadCount": 6
     }
   ],
@@ -381,5 +381,5 @@
     "threshold_method": "median",
     "high_priority_multiplier": 1.5
   },
-  "generated_at": "2025-12-25T01:31:10.442654"
+  "generated_at": "2025-12-25T02:26:11.241678"
 }

@@ -116,19 +116,6 @@
       "originCountry": "CA"
     },
     {
-      "airline": "LX",
-      "lastStop": "BOS",
-      "inad": 6,
-      "pax": 40890,
-      "density": 0.1467,
-      "confidence": 34,
-      "priority": "WATCH_LIST",
-      "originLat": 42.36294,
-      "originLng": -71.00639,
-      "originCity": "Boston",
-      "originCountry": "US"
-    },
-    {
       "airline": "DS",
       "lastStop": "PRN",
       "inad": 6,
@@ -156,15 +143,15 @@
     },
     {
       "airline": "LX",
-      "lastStop": "SFO",
+      "lastStop": "BOS",
       "inad": 6,
-      "pax": 44834,
-      "density": 0.1338,
-      "confidence": 35,
-      "priority": "CLEAR",
-      "originLat": 37.61881,
-      "originLng": -122.37542,
-      "originCity": "San Francisco",
+      "pax": 40890,
+      "density": 0.1467,
+      "confidence": 34,
+      "priority": "WATCH_LIST",
+      "originLat": 42.36294,
+      "originLng": -71.00639,
+      "originCity": "Boston",
       "originCountry": "US"
     },
     {
@@ -178,6 +165,19 @@
       "originLat": 33.9425,
       "originLng": -118.40805,
       "originCity": "Los Angeles",
+      "originCountry": "US"
+    },
+    {
+      "airline": "LX",
+      "lastStop": "SFO",
+      "inad": 6,
+      "pax": 44834,
+      "density": 0.1338,
+      "confidence": 35,
+      "priority": "CLEAR",
+      "originLat": 37.61881,
+      "originLng": -122.37542,
+      "originCity": "San Francisco",
       "originCountry": "US"
     },
     {
@@ -249,15 +249,15 @@
       "inadCount": 9
     },
     {
-      "airline": "GM",
-      "inadCount": 8
-    },
-    {
       "airline": "AC",
       "inadCount": 8
     },
     {
       "airline": "EZY",
+      "inadCount": 8
+    },
+    {
+      "airline": "GM",
       "inadCount": 8
     }
   ],
@@ -303,11 +303,6 @@
       "inadCount": 7
     },
     {
-      "airline": "LX",
-      "lastStop": "BOS",
-      "inadCount": 6
-    },
-    {
       "airline": "DS",
       "lastStop": "PRN",
       "inadCount": 6
@@ -319,12 +314,17 @@
     },
     {
       "airline": "LX",
-      "lastStop": "SFO",
+      "lastStop": "BOS",
       "inadCount": 6
     },
     {
       "airline": "LX",
       "lastStop": "LAX",
+      "inadCount": 6
+    },
+    {
+      "airline": "LX",
+      "lastStop": "SFO",
       "inadCount": 6
     },
     {
@@ -345,5 +345,5 @@
     "threshold_method": "median",
     "high_priority_multiplier": 1.5
   },
-  "generated_at": "2025-12-25T01:31:28.339979"
+  "generated_at": "2025-12-25T02:26:24.356621"
 }

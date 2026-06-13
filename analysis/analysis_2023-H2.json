@@ -90,17 +90,17 @@
       "originCountry": "XK"
     },
     {
-      "airline": "DL",
-      "lastStop": "JFK",
+      "airline": "LX",
+      "lastStop": "JNB",
       "inad": 8,
-      "pax": 54568,
-      "density": 0.1466,
-      "confidence": 45,
+      "pax": 43867,
+      "density": 0.1824,
+      "confidence": 41,
       "priority": "WATCH_LIST",
-      "originLat": 40.63993,
-      "originLng": -73.77869,
-      "originCity": "New York",
-      "originCountry": "US"
+      "originLat": -26.13367,
+      "originLng": 28.24233,
+      "originCity": "Johannesburg",
+      "originCountry": "ZA"
     },
     {
       "airline": "EZY",
@@ -116,19 +116,6 @@
       "originCountry": "GB"
     },
     {
-      "airline": "LX",
-      "lastStop": "JNB",
-      "inad": 8,
-      "pax": 43867,
-      "density": 0.1824,
-      "confidence": 41,
-      "priority": "WATCH_LIST",
-      "originLat": -26.13367,
-      "originLng": 28.24233,
-      "originCity": "Johannesburg",
-      "originCountry": "ZA"
-    },
-    {
       "airline": "EI",
       "lastStop": "DUB",
       "inad": 8,
@@ -142,42 +129,16 @@
       "originCountry": "IE"
     },
     {
-      "airline": "AA",
-      "lastStop": "PHL",
-      "inad": 7,
-      "pax": 32389,
-      "density": 0.2161,
-      "confidence": 33,
+      "airline": "DL",
+      "lastStop": "JFK",
+      "inad": 8,
+      "pax": 54568,
+      "density": 0.1466,
+      "confidence": 45,
       "priority": "WATCH_LIST",
-      "originLat": 39.87208,
-      "originLng": -75.24066,
-      "originCity": "Philadelphia",
-      "originCountry": "US"
-    },
-    {
-      "airline": "UA",
-      "lastStop": "ORD",
-      "inad": 7,
-      "pax": 25614,
-      "density": 0.2733,
-      "confidence": 31,
-      "priority": "WATCH_LIST",
-      "originLat": 41.97694,
-      "originLng": -87.90815,
-      "originCity": "Chicago",
-      "originCountry": "US"
-    },
-    {
-      "airline": "LX",
-      "lastStop": "ORD",
-      "inad": 7,
-      "pax": 66811,
-      "density": 0.1048,
-      "confidence": 47,
-      "priority": "CLEAR",
-      "originLat": 41.97694,
-      "originLng": -87.90815,
-      "originCity": "Chicago",
+      "originLat": 40.63993,
+      "originLng": -73.77869,
+      "originCity": "New York",
       "originCountry": "US"
     },
     {
@@ -194,6 +155,19 @@
       "originCountry": "RS"
     },
     {
+      "airline": "LX",
+      "lastStop": "ORD",
+      "inad": 7,
+      "pax": 66811,
+      "density": 0.1048,
+      "confidence": 47,
+      "priority": "CLEAR",
+      "originLat": 41.97694,
+      "originLng": -87.90815,
+      "originCity": "Chicago",
+      "originCountry": "US"
+    },
+    {
       "airline": "SV",
       "lastStop": "RUH",
       "inad": 7,
@@ -205,6 +179,32 @@
       "originLng": 46.6988,
       "originCity": "Riyadh",
       "originCountry": "SA"
+    },
+    {
+      "airline": "UA",
+      "lastStop": "ORD",
+      "inad": 7,
+      "pax": 25614,
+      "density": 0.2733,
+      "confidence": 31,
+      "priority": "WATCH_LIST",
+      "originLat": 41.97694,
+      "originLng": -87.90815,
+      "originCity": "Chicago",
+      "originCountry": "US"
+    },
+    {
+      "airline": "AA",
+      "lastStop": "PHL",
+      "inad": 7,
+      "pax": 32389,
+      "density": 0.2161,
+      "confidence": 33,
+      "priority": "WATCH_LIST",
+      "originLat": 39.87208,
+      "originLng": -75.24066,
+      "originCity": "Philadelphia",
+      "originCountry": "US"
     },
     {
       "airline": "LX",
@@ -234,19 +234,6 @@
     },
     {
       "airline": "UA",
-      "lastStop": "IAD",
-      "inad": 6,
-      "pax": 51095,
-      "density": 0.1174,
-      "confidence": 38,
-      "priority": "CLEAR",
-      "originLat": 38.9,
-      "originLng": -77.5,
-      "originCity": "Washington",
-      "originCountry": "US"
-    },
-    {
-      "airline": "UA",
       "lastStop": "EWR",
       "inad": 6,
       "pax": 54138,
@@ -256,6 +243,19 @@
       "originLat": 40.69248,
       "originLng": -74.16869,
       "originCity": "Newark",
+      "originCountry": "US"
+    },
+    {
+      "airline": "UA",
+      "lastStop": "IAD",
+      "inad": 6,
+      "pax": 51095,
+      "density": 0.1174,
+      "confidence": 38,
+      "priority": "CLEAR",
+      "originLat": 38.9,
+      "originLng": -77.5,
+      "originCity": "Washington",
       "originCountry": "US"
     }
   ],
@@ -301,10 +301,6 @@
       "inadCount": 9
     },
     {
-      "airline": "U2",
-      "inadCount": 8
-    },
-    {
       "airline": "DL",
       "inadCount": 8
     },
@@ -314,6 +310,10 @@
     },
     {
       "airline": "SV",
+      "inadCount": 8
+    },
+    {
+      "airline": "U2",
       "inadCount": 8
     },
     {
@@ -361,8 +361,8 @@
       "inadCount": 9
     },
     {
-      "airline": "DL",
-      "lastStop": "JFK",
+      "airline": "LX",
+      "lastStop": "JNB",
       "inadCount": 8
     },
     {
@@ -371,18 +371,28 @@
       "inadCount": 8
     },
     {
-      "airline": "LX",
-      "lastStop": "JNB",
-      "inadCount": 8
-    },
-    {
       "airline": "EI",
       "lastStop": "DUB",
       "inadCount": 8
     },
     {
-      "airline": "AA",
-      "lastStop": "PHL",
+      "airline": "DL",
+      "lastStop": "JFK",
+      "inadCount": 8
+    },
+    {
+      "airline": "LX",
+      "lastStop": "BEG",
+      "inadCount": 7
+    },
+    {
+      "airline": "LX",
+      "lastStop": "ORD",
+      "inadCount": 7
+    },
+    {
+      "airline": "SV",
+      "lastStop": "RUH",
       "inadCount": 7
     },
     {
@@ -391,18 +401,8 @@
       "inadCount": 7
     },
     {
-      "airline": "LX",
-      "lastStop": "ORD",
-      "inadCount": 7
-    },
-    {
-      "airline": "LX",
-      "lastStop": "BEG",
-      "inadCount": 7
-    },
-    {
-      "airline": "SV",
-      "lastStop": "RUH",
+      "airline": "AA",
+      "lastStop": "PHL",
       "inadCount": 7
     },
     {
@@ -417,12 +417,12 @@
     },
     {
       "airline": "UA",
-      "lastStop": "IAD",
+      "lastStop": "EWR",
       "inadCount": 6
     },
     {
       "airline": "UA",
-      "lastStop": "EWR",
+      "lastStop": "IAD",
       "inadCount": 6
     }
   ],
@@ -433,5 +433,5 @@
     "threshold_method": "median",
     "high_priority_multiplier": 1.5
   },
-  "generated_at": "2025-12-25T01:31:22.361696"
+  "generated_at": "2025-12-25T02:26:20.078642"
 }

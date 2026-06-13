@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/casa-dashboard-v2/static/css/main.ecd566a0.css",
-    "main.js": "/casa-dashboard-v2/static/js/main.8b8965e9.js",
-    "static/js/239.2b33c160.chunk.js": "/casa-dashboard-v2/static/js/239.2b33c160.chunk.js",
+    "main.css": "/casa-dashboard-v2/static/css/main.4757abde.css",
+    "main.js": "/casa-dashboard-v2/static/js/main.24a6f87c.js",
+    "static/js/239.33daf218.chunk.js": "/casa-dashboard-v2/static/js/239.33daf218.chunk.js",
     "index.html": "/casa-dashboard-v2/index.html",
-    "main.ecd566a0.css.map": "/casa-dashboard-v2/static/css/main.ecd566a0.css.map",
-    "main.8b8965e9.js.map": "/casa-dashboard-v2/static/js/main.8b8965e9.js.map",
-    "239.2b33c160.chunk.js.map": "/casa-dashboard-v2/static/js/239.2b33c160.chunk.js.map"
+    "main.4757abde.css.map": "/casa-dashboard-v2/static/css/main.4757abde.css.map",
+    "main.24a6f87c.js.map": "/casa-dashboard-v2/static/js/main.24a6f87c.js.map",
+    "239.33daf218.chunk.js.map": "/casa-dashboard-v2/static/js/239.33daf218.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ecd566a0.css",
-    "static/js/main.8b8965e9.js"
+    "static/css/main.4757abde.css",
+    "static/js/main.24a6f87c.js"
   ]
 }

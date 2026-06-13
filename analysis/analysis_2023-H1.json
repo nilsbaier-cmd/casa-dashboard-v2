@@ -103,19 +103,6 @@
       "originCountry": "US"
     },
     {
-      "airline": "LX",
-      "lastStop": "BOS",
-      "inad": 8,
-      "pax": 42705,
-      "density": 0.1873,
-      "confidence": 41,
-      "priority": "WATCH_LIST",
-      "originLat": 42.36294,
-      "originLng": -71.00639,
-      "originCity": "Boston",
-      "originCountry": "US"
-    },
-    {
       "airline": "EI",
       "lastStop": "DUB",
       "inad": 8,
@@ -142,6 +129,19 @@
       "originCountry": "AE"
     },
     {
+      "airline": "LX",
+      "lastStop": "BOS",
+      "inad": 8,
+      "pax": 42705,
+      "density": 0.1873,
+      "confidence": 41,
+      "priority": "WATCH_LIST",
+      "originLat": 42.36294,
+      "originLng": -71.00639,
+      "originCity": "Boston",
+      "originCountry": "US"
+    },
+    {
       "airline": "UA",
       "lastStop": "ORD",
       "inad": 8,
@@ -153,19 +153,6 @@
       "originLng": -87.90815,
       "originCity": "Chicago",
       "originCountry": "US"
-    },
-    {
-      "airline": "LX",
-      "lastStop": "DXB",
-      "inad": 7,
-      "pax": 41602,
-      "density": 0.1683,
-      "confidence": 37,
-      "priority": "WATCH_LIST",
-      "originLat": 25.2528,
-      "originLng": 55.3644,
-      "originCity": "Dubai",
-      "originCountry": "AE"
     },
     {
       "airline": "JU",
@@ -182,16 +169,16 @@
     },
     {
       "airline": "LX",
-      "lastStop": "DEL",
-      "inad": 6,
-      "pax": 40181,
-      "density": 0.1493,
-      "confidence": 34,
-      "priority": "CLEAR",
-      "originLat": 28.5665,
-      "originLng": 77.1031,
-      "originCity": "New Delhi",
-      "originCountry": "IN"
+      "lastStop": "DXB",
+      "inad": 7,
+      "pax": 41602,
+      "density": 0.1683,
+      "confidence": 37,
+      "priority": "WATCH_LIST",
+      "originLat": 25.2528,
+      "originLng": 55.3644,
+      "originCity": "Dubai",
+      "originCountry": "AE"
     },
     {
       "airline": "EZY",
@@ -205,6 +192,19 @@
       "originLng": -0.19028,
       "originCity": "London",
       "originCountry": "GB"
+    },
+    {
+      "airline": "LX",
+      "lastStop": "DEL",
+      "inad": 6,
+      "pax": 40181,
+      "density": 0.1493,
+      "confidence": 34,
+      "priority": "CLEAR",
+      "originLat": 28.5665,
+      "originLng": 77.1031,
+      "originCity": "New Delhi",
+      "originCountry": "IN"
     },
     {
       "airline": "DS",
@@ -328,11 +328,6 @@
       "inadCount": 10
     },
     {
-      "airline": "LX",
-      "lastStop": "BOS",
-      "inadCount": 8
-    },
-    {
       "airline": "EI",
       "lastStop": "DUB",
       "inadCount": 8
@@ -343,14 +338,14 @@
       "inadCount": 8
     },
     {
-      "airline": "UA",
-      "lastStop": "ORD",
+      "airline": "LX",
+      "lastStop": "BOS",
       "inadCount": 8
     },
     {
-      "airline": "LX",
-      "lastStop": "DXB",
-      "inadCount": 7
+      "airline": "UA",
+      "lastStop": "ORD",
+      "inadCount": 8
     },
     {
       "airline": "JU",
@@ -359,12 +354,17 @@
     },
     {
       "airline": "LX",
-      "lastStop": "DEL",
-      "inadCount": 6
+      "lastStop": "DXB",
+      "inadCount": 7
     },
     {
       "airline": "EZY",
       "lastStop": "LGW",
+      "inadCount": 6
+    },
+    {
+      "airline": "LX",
+      "lastStop": "DEL",
       "inadCount": 6
     },
     {
@@ -385,5 +385,5 @@
     "threshold_method": "median",
     "high_priority_multiplier": 1.5
   },
-  "generated_at": "2025-12-25T01:31:16.386486"
+  "generated_at": "2025-12-25T02:26:15.643500"
 }

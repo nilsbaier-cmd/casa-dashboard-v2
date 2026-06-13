@@ -194,11 +194,11 @@
       "inadCount": 10
     },
     {
-      "airline": "TK",
+      "airline": "AC",
       "inadCount": 9
     },
     {
-      "airline": "AC",
+      "airline": "TK",
       "inadCount": 9
     },
     {
@@ -279,5 +279,5 @@
     "threshold_method": "median",
     "high_priority_multiplier": 1.5
   },
-  "generated_at": "2025-12-25T01:31:04.677265"
+  "generated_at": "2025-12-25T02:26:06.885483"
 }
